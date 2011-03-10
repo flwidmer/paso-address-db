@@ -1,0 +1,16 @@
+ch.paso.address.client.services.IPersonService, false, false, false, false, _, 3591765992
+ch.paso.address.shared.entities.PersonEntity, true, true, false, false, ch.paso.address.shared.entities.PersonEntity/1253556185, 1253556185
+@ClientFields,ch.paso.address.shared.entities.PersonEntity,m_id,m_firstName,m_lastName,m_vulgo,m_birthDate,m_entry,m_left,m_active
+ch.paso.address.shared.util.SimpleDateTime, true, true, false, false, ch.paso.address.shared.util.SimpleDateTime/1296574502, 1296574502
+com.google.gwt.i18n.client.impl.DateRecord, true, true, false, false, com.google.gwt.i18n.client.impl.DateRecord/112389920, 112389920
+com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
+java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
+java.lang.Long, true, true, true, true, java.lang.Long/4227064769, 4227064769
+java.lang.Number, true, false, true, false, java.lang.Number/300033342, 300033342
+java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
+java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
+java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131
+java.sql.Date, true, true, false, false, java.sql.Date/3996530531, 3996530531
+java.sql.Time, true, true, false, false, java.sql.Time/831929183, 831929183
+java.sql.Timestamp, true, true, false, false, java.sql.Timestamp/1769758459, 1769758459
+java.util.Date, true, true, false, false, java.util.Date/1659716317, 1659716317
