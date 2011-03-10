@@ -8,12 +8,20 @@ import ch.paso.address.client.forms.fields.AbstractCheckboxfield;
 import ch.paso.address.client.forms.fields.AbstractDateField;
 import ch.paso.address.client.forms.fields.AbstractGroupBox;
 import ch.paso.address.client.forms.fields.AbstractTextField;
+import ch.paso.address.client.services.IPersonService;
+import ch.paso.address.client.services.IPersonServiceAsync;
+import ch.paso.address.server.services.PersonService;
+import ch.paso.address.shared.entities.PersonEntity;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PersonForm extends AbstractForm {
+
+	private Long m_id;
 
 	@Override
 	protected String getConfiguredTitle() {
@@ -164,7 +172,7 @@ public class PersonForm extends AbstractForm {
 
 	}
 
-	public void startNrew() {
+	public void startNew() {
 		startHandler(new NewHandler());
 	}
 
@@ -177,13 +185,42 @@ public class PersonForm extends AbstractForm {
 
 		@Override
 		public void execLoad() {
-			// TODO Auto-generated method stub
+			IPersonServiceAsync personService = GWT
+					.create(IPersonService.class);
+			personService.getPerson(getId(), new AsyncCallback<PersonEntity>() {
 
+				@Override
+				public void onSuccess(PersonEntity result) {
+					importFormData(result);
+				}
+
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Alert to failure
+				}
+			});
 		}
-
 	}
 
 	public void startModify() {
 		startHandler(new ModifyHandler());
+	}
+
+	public void setId(Long id) {
+		m_id = id;
+	}
+
+	public Long getId() {
+		return m_id;
+	}
+
+	private void importFormData(PersonEntity result) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private PersonEntity exportFormData() {
+		// TODO
+		return null;
 	}
 }
