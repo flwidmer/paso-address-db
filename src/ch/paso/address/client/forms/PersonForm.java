@@ -271,6 +271,7 @@ public class PersonForm extends AbstractForm {
 		getEntryDateField().setValue(result.getEntry());
 		getLeftDateField().setValue(result.getLeft());
 		getActiveField().setValue(result.isActive());
+		setId(result.getId());
 	}
 
 	private PersonEntity exportFormData() {
@@ -282,6 +283,7 @@ public class PersonForm extends AbstractForm {
 		p.setEntry(getEntryDateField().getValue());
 		p.setLeft(getLeftDateField().getValue());
 		p.setActive(getActiveField().getValue());
+		p.setId(getId());
 		return p;
 	}
 
