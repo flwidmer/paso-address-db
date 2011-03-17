@@ -1,6 +1,5 @@
 package ch.paso.address.client.tables;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.paso.address.client.forms.PersonForm;
@@ -14,7 +13,6 @@ import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
@@ -30,6 +28,10 @@ public class PersonTablePage extends Composite {
 
 	@Override
 	protected void onLoad() {
+		reload();
+	}
+
+	public void reload() {
 		IPersonServiceAsync svc = GWT.create(IPersonService.class);
 		svc.getAllPersons(new AsyncCallback<List<PersonEntity>>() {
 			
@@ -51,6 +53,7 @@ public class PersonTablePage extends Composite {
 			addColumn(new FirstNameColumn());
 			addColumn(new LastNameColumn());
 			addColumn(new VulgoColumn());
+			addColumn(new BirthdayColumn());
 			addColumn(new EditButtonColumn());
 		}
 
@@ -76,7 +79,6 @@ public class PersonTablePage extends Composite {
 			public String getValue(PersonEntity object) {
 				return object.getLastName();
 			}
-
 		}
 
 		public class VulgoColumn extends Column<PersonEntity, String> {
@@ -87,6 +89,15 @@ public class PersonTablePage extends Composite {
 			@Override
 			public String getValue(PersonEntity object) {
 				return object.getVulgo();
+			}
+		}
+		public class BirthdayColumn extends Column<PersonEntity, String>{
+			public BirthdayColumn() {
+				super(new TextCell());
+			}
+			@Override
+			public String getValue(PersonEntity object) {
+				return object.getBirthDate().toString();
 			}
 		}
 
@@ -100,7 +111,8 @@ public class PersonTablePage extends Composite {
 					public void update(int index, PersonEntity object,
 							String value) {
 						PersonForm form = new PersonForm();
-						form.startNew();
+						form.setId(object.getId());
+						form.startModify();
 					}
 				});
 			}

@@ -4,13 +4,17 @@ package ch.paso.address.shared.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class PersonEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long m_id;
 	public Long getId() {
 		return m_id;
@@ -60,11 +64,18 @@ public class PersonEntity implements Serializable{
 	public void setActive(boolean active) {
 		m_active = active;
 	}
+	@Basic
 	private String m_firstName;
+	@Basic
 	private String m_lastName;
+	@Basic
 	private String m_vulgo;
+	@Basic
 	private Date m_birthDate;
+	@Basic
 	private Date m_entry;
+	@Basic
 	private Date m_left;
+	@Basic
 	private boolean m_active;
 }

@@ -17,6 +17,8 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
  value="true" />
  <property name="datanucleus.ConnectionURL"
  value="appengine" />
+ <property name="datanucleus.autoCreateSchema" value="true"/>
+ 
  </properties>
  </persistence-unit>
 </persistence>

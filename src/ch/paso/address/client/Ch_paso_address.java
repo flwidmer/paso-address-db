@@ -7,6 +7,9 @@ import ch.paso.address.client.tables.PersonTablePage;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -32,10 +35,17 @@ public class Ch_paso_address implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		PersonTablePage table = new PersonTablePage();
+		final PersonTablePage table = new PersonTablePage();
 		RootPanel.get("nameFieldContainer").add(table);
 		PersonForm form= new PersonForm();
 		form.startNew();
+		form.addCloseHandler(new CloseHandler<PopupPanel>() {
+			
+			@Override
+			public void onClose(CloseEvent<PopupPanel> event) {
+				table.reload();
+			}
+		});
 //		final Button sendButton = new Button("Send");
 //		final TextBox nameField = new TextBox();
 //		nameField.setText("GWT User");
