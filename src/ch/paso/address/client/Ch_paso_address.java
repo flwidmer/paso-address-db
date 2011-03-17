@@ -1,5 +1,6 @@
 package ch.paso.address.client;
 
+import ch.paso.address.client.forms.PersonForm;
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
 import ch.paso.address.client.tables.PersonTablePage;
@@ -33,7 +34,8 @@ public class Ch_paso_address implements EntryPoint {
 	public void onModuleLoad() {
 		PersonTablePage table = new PersonTablePage();
 		RootPanel.get("nameFieldContainer").add(table);
-		table.test();
+		PersonForm form= new PersonForm();
+		form.startNew();
 //		final Button sendButton = new Button("Send");
 //		final TextBox nameField = new TextBox();
 //		nameField.setText("GWT User");

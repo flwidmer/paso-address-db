@@ -1,5 +1,7 @@
 package ch.paso.address.client.services;
 
+import java.util.List;
+
 import ch.paso.address.shared.entities.PersonEntity;
 
 import com.google.gwt.core.client.GWT;
@@ -21,4 +23,6 @@ public interface IPersonService extends RemoteService {
 		}
 	}
 	public PersonEntity getPerson(Long key);
+	public PersonEntity storePerson(PersonEntity p);
+	public List<PersonEntity> getAllPersons();
 }
