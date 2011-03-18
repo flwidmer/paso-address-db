@@ -7,5 +7,8 @@ public abstract class AbstractStringColumn<T> extends AbstractColumn<T,String>{
 
 	public AbstractStringColumn() {
 		super(new TextCell());
+		
 	}
+	
+	
 }

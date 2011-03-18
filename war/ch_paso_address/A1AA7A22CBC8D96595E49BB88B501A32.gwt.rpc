@@ -1,7 +1,7 @@
 ch.paso.address.client.services.IPersonService, false, false, false, false, _, 3591765992
-ch.paso.address.shared.entities.PersonEntity, true, true, true, true, ch.paso.address.shared.entities.PersonEntity/4041472690, 4041472690
-@ClientFields,ch.paso.address.shared.entities.PersonEntity,m_id,m_firstName,m_lastName,m_vulgo,m_birthDate,m_entry,m_left,m_active
-[Lch.paso.address.shared.entities.PersonEntity;, true, true, false, false, [Lch.paso.address.shared.entities.PersonEntity;/290537805, 290537805
+ch.paso.address.shared.entities.PersonEntity, true, true, true, true, ch.paso.address.shared.entities.PersonEntity/204223040, 204223040
+@ClientFields,ch.paso.address.shared.entities.PersonEntity,m_id,m_firstName,m_lastName,m_vulgo,m_birthDate,m_entry,m_left,m_active,m_street,m_plz,m_town,m_phone,m_cell,m_email
+[Lch.paso.address.shared.entities.PersonEntity;, true, true, false, false, [Lch.paso.address.shared.entities.PersonEntity;/3578014224, 3578014224
 com.google.gwt.i18n.client.impl.DateRecord, true, true, true, true, com.google.gwt.i18n.client.impl.DateRecord/112389920, 112389920
 com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
 java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873

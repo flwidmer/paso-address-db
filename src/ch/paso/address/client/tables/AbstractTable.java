@@ -14,6 +14,9 @@ public abstract class AbstractTable<T> extends CellTable<T>{
 		List<AbstractColumn> col = getConfiguredColumns();
 		for (AbstractColumn column : col) {
 			addColumn(column,column.getConfiguredTitle());
+			if(column.getConfiguredSortable()){
+				
+			}
 		}
 	}
 

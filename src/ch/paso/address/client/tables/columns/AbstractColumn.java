@@ -9,7 +9,12 @@ public abstract class AbstractColumn <T, C> extends Column<T, C> {
 		super(cell);
 	}
 	
+	
 	public String getConfiguredTitle(){
 		return "";
+	}
+	
+	public boolean getConfiguredSortable(){
+		return false;
 	}
 }

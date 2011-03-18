@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public abstract class AbstractGroupBox extends HorizontalPanel {
+public abstract class AbstractGroupBox extends VerticalPanel {
 
 	private List<VerticalPanel> m_panels;
 	private List<Widget> m_fields;
 	private int m_numberofColumns;
 	private boolean m_initialized = false;
 	private int m_border;
+	private HorizontalPanel m_innerPanel;
+	private Label m_label;
 
 	public AbstractGroupBox() {
 		setPanels(new ArrayList<VerticalPanel>());
@@ -28,17 +32,27 @@ public abstract class AbstractGroupBox extends HorizontalPanel {
 	}
 
 	private void init() {
+		setInnerPanel(new HorizontalPanel());
+		setLabel(new HTML());
+		getLabel().setText(getConfiguredLabel());
+		getLabel().setStyleName("GroupBoxLabel");
+		add(getLabel());
+		add(getInnerPanel());
 		setBorder(getConfiguredBorder());
 		setBorderInternal();
+		getInnerPanel().setSpacing(3);
 		setNumberofColumns(getConfiguredNumberOfColumns());
 		for (int i = 0; i < getNumberofColumns(); i++) {
 			VerticalPanel vp = new VerticalPanel();
-			add(vp);
+			getInnerPanel().add(vp);
 			getPanels().add(vp);
 		}
-
 		setFields(getConfiguredFields());
 		assignFieldsInternal();
+	}
+
+	protected String getConfiguredLabel() {
+		return "";
 	}
 
 	protected void assignFieldsInternal() {
@@ -102,7 +116,7 @@ public abstract class AbstractGroupBox extends HorizontalPanel {
 
 	public void setBorder(int border) {
 		m_border = border;
-		if(isInitialized()){
+		if (isInitialized()) {
 			setBorderInternal();
 		}
 	}
@@ -114,7 +128,24 @@ public abstract class AbstractGroupBox extends HorizontalPanel {
 	public int getBorder() {
 		return m_border;
 	}
-	protected int getConfiguredBorder(){
+
+	protected int getConfiguredBorder() {
 		return 3;
+	}
+
+	public void setInnerPanel(HorizontalPanel innerPanel) {
+		m_innerPanel = innerPanel;
+	}
+
+	public HorizontalPanel getInnerPanel() {
+		return m_innerPanel;
+	}
+
+	public void setLabel(Label label) {
+		m_label = label;
+	}
+
+	public Label getLabel() {
+		return m_label;
 	}
 }

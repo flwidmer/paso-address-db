@@ -106,10 +106,6 @@ public abstract class AbstractForm extends DialogBox {
 		return m_buttons;
 	}
 
-	public abstract void doOk();
-
-	public abstract void doCancel();
-
 	public void store() {
 		if (getHandler() != null) {
 			getHandler().execStore();
@@ -134,5 +130,13 @@ public abstract class AbstractForm extends DialogBox {
 		load();
 		center();
 		show();
+	}
+
+	public void doOk() {
+		store();
+	}
+
+	public void doCancel() {
+		hide();
 	}
 }

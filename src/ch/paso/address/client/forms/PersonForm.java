@@ -3,6 +3,12 @@ package ch.paso.address.client.forms;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.paso.address.client.forms.PersonForm.AddressGroupBox.CellField;
+import ch.paso.address.client.forms.PersonForm.AddressGroupBox.EmailField;
+import ch.paso.address.client.forms.PersonForm.AddressGroupBox.PhoneField;
+import ch.paso.address.client.forms.PersonForm.AddressGroupBox.PlzField;
+import ch.paso.address.client.forms.PersonForm.AddressGroupBox.StreetField;
+import ch.paso.address.client.forms.PersonForm.AddressGroupBox.TownField;
 import ch.paso.address.client.forms.PersonForm.DatesGroupbox.ActiveField;
 import ch.paso.address.client.forms.PersonForm.DatesGroupbox.EntryDateField;
 import ch.paso.address.client.forms.PersonForm.DatesGroupbox.LeftDateField;
@@ -35,6 +41,12 @@ public class PersonForm extends AbstractForm {
 	private EntryDateField m_entryDateField;
 	private LeftDateField m_leftDateField;
 	private ActiveField m_activeField;
+	private StreetField m_streetField;
+	private PlzField m_plzField;
+	private TownField m_townField;
+	private PhoneField m_phoneField;
+	private CellField m_cellField;
+	private EmailField m_emailField;
 
 	@Override
 	protected String getConfiguredTitle() {
@@ -42,7 +54,6 @@ public class PersonForm extends AbstractForm {
 	}
 
 	public class InfoBox extends AbstractGroupBox {
-		
 
 		public class FirstNameField extends AbstractTextField {
 			@Override
@@ -87,9 +98,81 @@ public class PersonForm extends AbstractForm {
 		}
 	}
 
-	public class DatesGroupbox extends AbstractGroupBox {
-		
+	public class AddressGroupBox extends AbstractGroupBox {
 
+		@Override
+		protected String getConfiguredLabel() {
+			return "Kontaktinformationen";
+		}
+		
+		@Override
+		protected List<Widget> getConfiguredFields() {
+			ArrayList<Widget> result = new ArrayList<Widget>();
+			setStreetField(new StreetField());
+			setPlzField(new PlzField());
+			setTownField(new TownField());
+			setPhoneField(new PhoneField());
+			setCellField(new CellField());
+			setEmailField(new EmailField());
+			result.add(getStreetField());
+			result.add(getPlzField());
+			result.add(getTownField());
+			result.add(getPhoneField());
+			result.add(getCellField());
+			result.add(getEmailField());
+			return result;
+		}
+
+		public class StreetField extends AbstractTextField {
+			@Override
+			protected String getConfiguredLabel() {
+				return "Strasse";
+			}
+		}
+
+		public class PlzField extends AbstractTextField {
+			@Override
+			protected String getConfiguredLabel() {
+				return "PLZ";
+			}
+		}
+
+		public class TownField extends AbstractTextField {
+			@Override
+			protected String getConfiguredLabel() {
+				return "Ort";
+			}
+		}
+
+		public class PhoneField extends AbstractTextField {
+			@Override
+			protected String getConfiguredLabel() {
+				return "Telefon";
+			}
+		}
+
+		public class CellField extends AbstractTextField {
+			@Override
+			protected String getConfiguredLabel() {
+				return "Mobile";
+			}
+		}
+
+		public class EmailField extends AbstractTextField {
+			@Override
+			protected String getConfiguredLabel() {
+				return "Email";
+			}
+		}
+
+	}
+
+	public class DatesGroupbox extends AbstractGroupBox {
+
+		@Override
+		protected String getConfiguredLabel() {
+			return "Mitgliedschaft";
+		}
 		public class ActiveField extends AbstractCheckboxfield {
 			@Override
 			protected String getConfiguredLabel() {
@@ -157,6 +240,7 @@ public class PersonForm extends AbstractForm {
 	protected List<Widget> getConfiguredFields() {
 		List<Widget> result = new ArrayList<Widget>();
 		result.add(new InfoBox());
+		result.add(new AddressGroupBox());
 		result.add(new DatesGroupbox());
 		return result;
 	}
@@ -169,17 +253,6 @@ public class PersonForm extends AbstractForm {
 		return result;
 	}
 
-	@Override
-	public void doOk() {
-		store();
-		hide();
-	}
-
-	@Override
-	public void doCancel() {
-		hide();
-	}
-
 	public class NewHandler implements IHandler {
 
 		@Override
@@ -190,8 +263,8 @@ public class PersonForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					//TODO display failure message
-					
+					// TODO display failure message
+
 				}
 
 				@Override
@@ -203,7 +276,7 @@ public class PersonForm extends AbstractForm {
 
 		@Override
 		public void execLoad() {
-			//New... do nothing
+			// New... do nothing
 		}
 
 	}
@@ -271,6 +344,12 @@ public class PersonForm extends AbstractForm {
 		getEntryDateField().setValue(result.getEntry());
 		getLeftDateField().setValue(result.getLeft());
 		getActiveField().setValue(result.isActive());
+		getStreetField().setValue(result.getStreet());
+		getPlzField().setValue(result.getPlz());
+		getTownField().setValue(result.getPhone());
+		getPhoneField().setValue(result.getPhone());
+		getCellField().setValue(result.getCell());
+		getEmailField().setValue(result.getEmail());
 		setId(result.getId());
 	}
 
@@ -283,6 +362,12 @@ public class PersonForm extends AbstractForm {
 		p.setEntry(getEntryDateField().getValue());
 		p.setLeft(getLeftDateField().getValue());
 		p.setActive(getActiveField().getValue());
+		p.setStreet(getStreetField().getValue());
+		p.setPlz(getPlzField().getValue());
+		p.setTown(getTownField().getValue());
+		p.setPhone(getPhoneField().getValue());
+		p.setCell(getCellField().getValue());
+		p.setEmail(getEmailField().getValue());
 		p.setId(getId());
 		return p;
 	}
@@ -342,4 +427,53 @@ public class PersonForm extends AbstractForm {
 	public ActiveField getActiveField() {
 		return m_activeField;
 	}
+
+	public void setStreetField(StreetField streetField) {
+		m_streetField = streetField;
+	}
+
+	public StreetField getStreetField() {
+		return m_streetField;
+	}
+
+	public void setPlzField(PlzField plzField) {
+		m_plzField = plzField;
+	}
+
+	public PlzField getPlzField() {
+		return m_plzField;
+	}
+
+	public void setTownField(TownField townField) {
+		m_townField = townField;
+	}
+
+	public TownField getTownField() {
+		return m_townField;
+	}
+
+	public void setPhoneField(PhoneField phoneField) {
+		m_phoneField = phoneField;
+	}
+
+	public PhoneField getPhoneField() {
+		return m_phoneField;
+	}
+
+	public void setCellField(CellField cellField) {
+		m_cellField = cellField;
+	}
+
+	public CellField getCellField() {
+		return m_cellField;
+	}
+
+	public void setEmailField(EmailField emailField) {
+		m_emailField = emailField;
+	}
+
+	public EmailField getEmailField() {
+		return m_emailField;
+	}
+
 }
