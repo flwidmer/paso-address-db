@@ -76,6 +76,7 @@ public class PersonTablePage extends Composite {
 			cols.add(new EmailColumn());
 			cols.add(new BirthdayColumn());
 			cols.add(new EditButtonColumn());
+			cols.add(new DeleteButtonColumn());
 			return cols;
 		}
 
@@ -122,7 +123,7 @@ public class PersonTablePage extends Composite {
 			public String getValue(PersonEntity object) {
 				return object.getStreet();
 			}
-			
+
 			@Override
 			public String getConfiguredTitle() {
 				return "Strasse";
@@ -134,16 +135,18 @@ public class PersonTablePage extends Composite {
 			public String getValue(PersonEntity object) {
 				return object.getPlz();
 			}
-			
+
 			@Override
 			public String getConfiguredTitle() {
 				return "PLZ";
-			}		}
+			}
+		}
 
 		public class TownColumn extends AbstractStringColumn<PersonEntity> {
 			public String getValue(PersonEntity object) {
 				return object.getTown();
 			};
+
 			@Override
 			public String getConfiguredTitle() {
 				return "Ort";
@@ -155,6 +158,7 @@ public class PersonTablePage extends Composite {
 			public String getValue(PersonEntity object) {
 				return object.getPhone();
 			}
+
 			@Override
 			public String getConfiguredTitle() {
 				return "Telefon";
@@ -166,6 +170,7 @@ public class PersonTablePage extends Composite {
 			public String getValue(PersonEntity object) {
 				return object.getCell();
 			}
+
 			@Override
 			public String getConfiguredTitle() {
 				return "Mobile";
@@ -177,6 +182,7 @@ public class PersonTablePage extends Composite {
 			public String getValue(PersonEntity object) {
 				return object.getEmail();
 			}
+
 			@Override
 			public String getConfiguredTitle() {
 				return "Email";
@@ -222,6 +228,41 @@ public class PersonTablePage extends Composite {
 			@Override
 			public String getValue(PersonEntity object) {
 				return "Bearbeiten";
+			}
+
+		}
+
+		public class DeleteButtonColumn extends
+				AbstractColumn<PersonEntity, String> {
+
+			public DeleteButtonColumn() {
+				super(new ButtonCell());
+				setFieldUpdater(new FieldUpdater<PersonEntity, String>() {
+
+					@Override
+					public void update(final int index, PersonEntity object,
+							String value) {
+						
+						IPersonServiceAsync svc = GWT.create(IPersonService.class);
+						svc.deletePerson(object.getId(), new AsyncCallback<Void>() {
+							@Override
+							public void onFailure(Throwable caught) {
+								// TODO Auto-generated method stub
+								
+							}
+
+							@Override
+							public void onSuccess(Void result) {
+								reload();
+							}
+						});
+					}
+				});
+			}
+
+			@Override
+			public String getValue(PersonEntity object) {
+				return "Löschen";
 			}
 
 		}

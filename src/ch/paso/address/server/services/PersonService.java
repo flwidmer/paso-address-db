@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.server.storage.EMF;
@@ -49,5 +48,16 @@ public class PersonService extends RemoteServiceServlet implements
 		result.addAll(resultList);
 		em.close();
 		return result;
+	}
+	
+	public void deletePerson(Long key){
+		EntityManager em = EMF.get().createEntityManager();
+		em.getTransaction().begin();
+		PersonEntity p = em.find(PersonEntity.class, key);
+		if(p != null){
+			em.remove(p);
+		}
+		em.getTransaction().commit();
+		em.close();
 	}
 }

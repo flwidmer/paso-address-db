@@ -13,4 +13,6 @@ public interface IPersonServiceAsync {
 
 	public void getAllPersons(AsyncCallback<List<PersonEntity>> callback);
 
+	public void deletePerson(Long key, AsyncCallback<Void> callback);
+
 }

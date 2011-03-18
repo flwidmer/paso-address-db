@@ -25,4 +25,5 @@ public interface IPersonService extends RemoteService {
 	public PersonEntity getPerson(Long key);
 	public PersonEntity storePerson(PersonEntity p);
 	public List<PersonEntity> getAllPersons();
+	public void deletePerson(Long key);
 }
