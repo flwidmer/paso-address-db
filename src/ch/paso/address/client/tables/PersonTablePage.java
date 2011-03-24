@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import ch.paso.address.client.forms.PersonForm;
-import ch.paso.address.client.forms.fields.AbstractDateField;
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
 import ch.paso.address.client.tables.columns.AbstractColumn;
@@ -14,19 +13,18 @@ import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.PersonEntity;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.FieldUpdater;
-import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class PersonTablePage extends Composite {
 
@@ -34,8 +32,25 @@ public class PersonTablePage extends Composite {
 
 	public PersonTablePage() {
 		m_theTable = new PersonTable();
-
-		initWidget(m_theTable);
+		VerticalPanel hp = new VerticalPanel();
+		Button newButton = new Button();
+		newButton.setText("Neu");
+		newButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				PersonForm form = new PersonForm();
+				form.addCloseHandler(new CloseHandler<PopupPanel>() {
+					@Override
+					public void onClose(CloseEvent<PopupPanel> event) {
+						reload();
+					}
+				});
+				form.startNew();
+			}
+		});
+		hp.add(m_theTable);
+		hp.add(newButton);
+		initWidget(hp);
 	}
 
 	@Override

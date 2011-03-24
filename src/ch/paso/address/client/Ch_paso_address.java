@@ -1,18 +1,8 @@
 package ch.paso.address.client;
 
-import ch.paso.address.client.forms.PersonForm;
-import ch.paso.address.client.services.IPersonService;
-import ch.paso.address.client.services.IPersonServiceAsync;
-import ch.paso.address.client.tables.PersonTablePage;
+import ch.paso.address.client.navigation.Navigation;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.CloseEvent;
-import com.google.gwt.event.logical.shared.CloseHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -30,26 +20,17 @@ public class Ch_paso_address implements EntryPoint {
 	/**
 	 * This is the entry point method.
 	 */
+	
+	private static Navigation S_navigation;
 	public void onModuleLoad() {
-		final PersonTablePage table = new PersonTablePage();
-		RootPanel.get("nameFieldContainer").add(table);
-		table.reload();
-		Button newButton = new Button();
-		newButton.setText("Neu");
-		newButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				PersonForm form = new PersonForm();
-				form.addCloseHandler(new CloseHandler<PopupPanel>() {
-					@Override
-					public void onClose(CloseEvent<PopupPanel> event) {
-						table.reload();
-					}
-				});
-				form.startNew();
-			}
-		});
-		RootPanel.get("nameFieldContainer").add(newButton);
-
-		}
+		Navigation navigation = new Navigation(RootPanel.get("display"));
+		setNavigation(navigation);
+		RootPanel.get("navigation").add(navigation);
+	}
+	public static void setNavigation(Navigation s_navigation) {
+		S_navigation = s_navigation;
+	}
+	public static Navigation getNavigation() {
+		return S_navigation;
+	}
 }

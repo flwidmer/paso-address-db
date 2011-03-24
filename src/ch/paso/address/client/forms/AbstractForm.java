@@ -39,6 +39,7 @@ public abstract class AbstractForm extends DialogBox {
 		setButtonsInternal(getConfiguredButtons());
 		getButtonPanel().setHorizontalAlignment(
 				HasHorizontalAlignment.ALIGN_RIGHT);
+		getButtonPanel().setSpacing(5);
 		setFieldsInternal(getConfiguredFields());
 		setText(getConfiguredTitle());
 	}

@@ -32,6 +32,13 @@ h1 {
 	color: #777777;
 }
 
+.NavLink:HOVER{
+	text-decoration: underline;
+}
+
+.NavLink{
+	color: blue;
+}
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
 	margin: 15px 6px 6px;

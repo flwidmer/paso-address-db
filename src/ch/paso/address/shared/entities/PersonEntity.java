@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PersonEntity implements Serializable {
@@ -128,6 +129,14 @@ public class PersonEntity implements Serializable {
 		return m_email;
 	}
 
+	public void setFunction(FunctionCodeType function) {
+		m_function = function;
+	}
+
+	public FunctionCodeType getFunction() {
+		return m_function;
+	}
+
 	@Basic
 	private String m_firstName;
 	@Basic
@@ -154,4 +163,6 @@ public class PersonEntity implements Serializable {
 	private String m_cell;
 	@Basic
 	private String m_email;
+	//@ManyToOne
+	private FunctionCodeType m_function;
 }
