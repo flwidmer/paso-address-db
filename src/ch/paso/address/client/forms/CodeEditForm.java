@@ -9,9 +9,13 @@ import ch.paso.address.client.forms.fields.AbstractButton;
 import ch.paso.address.client.forms.fields.AbstractCheckboxfield;
 import ch.paso.address.client.forms.fields.AbstractGroupBox;
 import ch.paso.address.client.forms.fields.AbstractTextField;
+import ch.paso.address.client.services.ICodeService;
+import ch.paso.address.client.services.ICodeServiceAsync;
 import ch.paso.address.shared.entities.AbstractCodeType;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -80,6 +84,10 @@ public class CodeEditForm extends AbstractForm {
 			protected String getConfiguredLabel() {
 				return "Aktiv";
 			}
+			@Override
+			protected boolean getConfiguredInitValue() {
+				return true;
+			}
 		}
 	}
 
@@ -128,12 +136,27 @@ public class CodeEditForm extends AbstractForm {
 
 		@Override
 		public void execStore() {
-			exportData();
+			AbstractCodeType exportData = exportData();
+			ICodeServiceAsync svc = GWT.create(ICodeService.class);
+			svc.storeCode(exportData, new AsyncCallback<AbstractCodeType>() {
+				
+				@Override
+				public void onSuccess(AbstractCodeType result) {
+					hide();
+				}
+				
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
 		}
 
 		@Override
 		public void execLoad() {
 			//TODO
+			
 		}
 		
 	}

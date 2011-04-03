@@ -129,13 +129,13 @@ public class PersonEntity implements Serializable {
 		return m_email;
 	}
 
-	public void setFunction(FunctionCodeType function) {
-		m_function = function;
-	}
+//	public void setFunction(FunctionCodeType function) {
+//		m_function = function;
+//	}
 
-	public FunctionCodeType getFunction() {
-		return m_function;
-	}
+//	public FunctionCodeType getFunction() {
+//		return m_function;
+//	}
 
 	@Basic
 	private String m_firstName;
@@ -164,5 +164,5 @@ public class PersonEntity implements Serializable {
 	@Basic
 	private String m_email;
 	//@ManyToOne
-	private FunctionCodeType m_function;
+	//private FunctionCodeType m_function;
 }

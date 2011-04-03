@@ -19,7 +19,7 @@ public class AdminPage extends Composite {
 	@Override
 	protected void onLoad() {
 		getPanel().add(new FunctionAdminLink(Ch_paso_address.getNavigation()));
-
+		getPanel().add(new StufeAdminLink(Ch_paso_address.getNavigation()));
 	}
 
 	public void setPanel(VerticalPanel panel) {
@@ -46,5 +46,21 @@ public class AdminPage extends Composite {
 			return new FunctionAdminPage();
 		}
 		
+	}
+	
+	public class StufeAdminLink extends AbstractNavigationLink{
+
+		public StufeAdminLink(Navigation n) {
+			super(n);
+		}
+		@Override
+		protected String getConfiguredText() {
+			return "Stufen";
+		}
+		
+		@Override
+		protected Widget getConfiguredTarget() {
+			return new StufeAdminPage();
+		}
 	}
 }

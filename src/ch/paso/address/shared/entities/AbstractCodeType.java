@@ -16,9 +16,9 @@ public abstract class AbstractCodeType implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long m_id;
-	@Basic
+
 	private String m_text;
-	@Basic
+
 	private boolean m_active;
 
 	public void setId(Long id) {
@@ -48,4 +48,6 @@ public abstract class AbstractCodeType implements Serializable {
 	public void setText(String text) {
 		m_text = text;
 	}
+	
+	public abstract String getCodeTypeName();
 }

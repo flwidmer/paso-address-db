@@ -44,7 +44,7 @@ public class PersonService extends RemoteServiceServlet implements
 		EntityManager em = EMF.get().createEntityManager();
 		List resultList = em.createQuery("SELECT p FROM PersonEntity p").getResultList();
 		List<PersonEntity> result = new ArrayList<PersonEntity>();
-		
+
 		result.addAll(resultList);
 		em.close();
 		return result;

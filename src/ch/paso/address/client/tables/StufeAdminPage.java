@@ -1,13 +1,13 @@
 package ch.paso.address.client.tables;
 
 import ch.paso.address.shared.entities.AbstractCodeType;
-import ch.paso.address.shared.entities.FunctionCodeType;
+import ch.paso.address.shared.entities.StufeCodeType;
 
-public class FunctionAdminPage extends AbstractCodeAdminPage{
+public class StufeAdminPage extends AbstractCodeAdminPage {
 
 	@Override
 	protected AbstractCodeType getConfiguredPrototype() {
-		return new FunctionCodeType();
+		return new StufeCodeType();
 	}
 
 }
