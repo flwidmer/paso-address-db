@@ -7,5 +7,4 @@ public abstract class AbstractCheckBoxColumn<T> extends AbstractColumn<T, Boolea
 	public AbstractCheckBoxColumn() {
 		super(new CheckboxCell());
 	}
-
 }

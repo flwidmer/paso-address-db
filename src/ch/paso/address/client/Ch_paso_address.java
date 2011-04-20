@@ -4,6 +4,7 @@ import ch.paso.address.client.navigation.Navigation;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -23,7 +24,10 @@ public class Ch_paso_address implements EntryPoint {
 	
 	private static Navigation S_navigation;
 	public void onModuleLoad() {
-		Navigation navigation = new Navigation(RootPanel.get("display"));
+		RootPanel rootPanel = RootPanel.get("display");
+		ScrollPanel sp = new ScrollPanel();
+		rootPanel.add(sp);
+		Navigation navigation = new Navigation(sp);
 		setNavigation(navigation);
 		RootPanel.get("navigation").add(navigation);
 	}

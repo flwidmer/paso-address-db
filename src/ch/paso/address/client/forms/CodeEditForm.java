@@ -11,7 +11,7 @@ import ch.paso.address.client.forms.fields.AbstractGroupBox;
 import ch.paso.address.client.forms.fields.AbstractTextField;
 import ch.paso.address.client.services.ICodeService;
 import ch.paso.address.client.services.ICodeServiceAsync;
-import ch.paso.address.shared.entities.AbstractCodeType;
+import ch.paso.address.shared.entities.ICodeType;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,8 +23,9 @@ public class CodeEditForm extends AbstractForm {
 
 	private ValueField m_valueField;
 	private ActiveField m_activeField;
-	private AbstractCodeType m_formData;
+	private ICodeType m_formData;
 	private Long m_id;
+
 	@Override
 	protected List<Widget> getConfiguredFields() {
 		ArrayList<Widget> result = new ArrayList<Widget>();
@@ -62,6 +63,7 @@ public class CodeEditForm extends AbstractForm {
 		protected int getConfiguredNumberOfColumns() {
 			return 1;
 		}
+
 		@Override
 		protected List<Widget> getConfiguredFields() {
 			ArrayList<Widget> result = new ArrayList<Widget>();
@@ -84,6 +86,7 @@ public class CodeEditForm extends AbstractForm {
 			protected String getConfiguredLabel() {
 				return "Aktiv";
 			}
+
 			@Override
 			protected boolean getConfiguredInitValue() {
 				return true;
@@ -91,16 +94,16 @@ public class CodeEditForm extends AbstractForm {
 		}
 	}
 
-	private void importData(AbstractCodeType data) {
+	private void importData(ICodeType data) {
 		setFormData(data);
 		getValueField().setValue(data.getText());
 		getActiveField().setValue(data.isActive());
 		setId(data.getId());
 	}
 
-	private AbstractCodeType exportData() {
-		AbstractCodeType data = getFormData();
-		if(data == null){
+	private ICodeType exportData() {
+		ICodeType data = getFormData();
+		if (data == null) {
 			return null;
 		}
 		data.setActive(getActiveField().getValue());
@@ -108,6 +111,7 @@ public class CodeEditForm extends AbstractForm {
 		data.setText(getValueField().getValue());
 		return data;
 	}
+
 	public class OkButton extends AbstractButton {
 		@Override
 		protected String getConfiguredLabel() {
@@ -131,49 +135,93 @@ public class CodeEditForm extends AbstractForm {
 			doCancel();
 		}
 	}
-	
-	public class NewHandler implements IHandler{
+
+	public class ModifyHandler implements IHandler {
 
 		@Override
 		public void execStore() {
-			AbstractCodeType exportData = exportData();
+			ICodeType exportData = exportData();
 			ICodeServiceAsync svc = GWT.create(ICodeService.class);
-			svc.storeCode(exportData, new AsyncCallback<AbstractCodeType>() {
-				
+			svc.storeCode(exportData, new AsyncCallback<ICodeType>() {
+
 				@Override
-				public void onSuccess(AbstractCodeType result) {
+				public void onSuccess(ICodeType result) {
 					hide();
 				}
-				
+
 				@Override
 				public void onFailure(Throwable caught) {
 					// TODO Auto-generated method stub
-					
+
 				}
 			});
 		}
 
 		@Override
 		public void execLoad() {
-			//TODO
-			
+			ICodeServiceAsync svc = GWT.create(ICodeService.class);
+			svc.loadCode(getFormData(),getId(), new AsyncCallback<ICodeType>() {
+
+				@Override
+				public void onSuccess(ICodeType result) {
+					importData(result);
+				}
+
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Auto-generated method stub
+				}
+			});
 		}
-		
+
 	}
-	
+
+	public class NewHandler implements IHandler {
+
+		@Override
+		public void execStore() {
+			ICodeType exportData = exportData();
+			ICodeServiceAsync svc = GWT.create(ICodeService.class);
+			svc.storeCode(exportData, new AsyncCallback<ICodeType>() {
+
+				@Override
+				public void onSuccess(ICodeType result) {
+					hide();
+				}
+
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Auto-generated method stub
+
+				}
+			});
+		}
+
+		@Override
+		public void execLoad() {
+			// TODO
+		}
+
+	}
+
 	@Override
 	protected String getConfiguredTitle() {
 		return "Code editieren";
 	}
-	public void startNew(){
+
+	public void startNew() {
 		startHandler(new NewHandler());
 	}
 
-	public void setFormData(AbstractCodeType formData) {
+	public void startModify() {
+		startHandler(new ModifyHandler());
+	}
+
+	public void setFormData(ICodeType formData) {
 		m_formData = formData;
 	}
 
-	public AbstractCodeType getFormData() {
+	public ICodeType getFormData() {
 		return m_formData;
 	}
 

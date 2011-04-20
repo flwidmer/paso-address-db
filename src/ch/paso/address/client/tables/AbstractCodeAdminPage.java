@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.paso.address.client.forms.CodeEditForm;
-import ch.paso.address.client.forms.PersonForm;
 import ch.paso.address.client.services.ICodeService;
 import ch.paso.address.client.services.ICodeServiceAsync;
-import ch.paso.address.client.tables.columns.AbstractCheckBoxColumn;
 import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
-import ch.paso.address.shared.entities.AbstractCodeType;
-import ch.paso.address.shared.entities.FunctionCodeType;
+import ch.paso.address.shared.entities.ICodeType;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
@@ -36,7 +33,7 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 	private CodeTable m_theTable;
 	private VerticalPanel m_panel;
-	private AbstractCodeType m_prototype;
+	private ICodeType m_prototype;
 
 	public AbstractCodeAdminPage() {
 		setPanel(new VerticalPanel());
@@ -72,10 +69,10 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 	public void reload() {
 		ICodeServiceAsync svc = GWT.create(ICodeService.class);
-		svc.loadCodes(getConfiguredPrototype(), new AsyncCallback<List<AbstractCodeType>>() {
+		svc.loadCodes(getConfiguredPrototype(), new AsyncCallback<List>() {
 			
 			@Override
-			public void onSuccess(List<AbstractCodeType> result) {
+			public void onSuccess(List result) {
 				getTheTable().setRowData(result);
 			}
 			
@@ -88,7 +85,7 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 	}
 
-	protected abstract AbstractCodeType getConfiguredPrototype();
+	protected abstract ICodeType getConfiguredPrototype();
 
 	public void setPanel(VerticalPanel panel) {
 		m_panel = panel;
@@ -106,15 +103,15 @@ public abstract class AbstractCodeAdminPage extends Composite {
 		return m_theTable;
 	}
 
-	public void setPrototype(AbstractCodeType prototype) {
+	public void setPrototype(ICodeType prototype) {
 		m_prototype = prototype;
 	}
 
-	public AbstractCodeType getPrototype() {
+	public ICodeType getPrototype() {
 		return m_prototype;
 	}
 
-	public class CodeTable extends AbstractTable<AbstractCodeType> {
+	public class CodeTable extends AbstractTable<ICodeType> {
 
 		@SuppressWarnings("rawtypes")
 		@Override
@@ -126,10 +123,10 @@ public abstract class AbstractCodeAdminPage extends Composite {
 			return result;
 		}
 
-		public class ValueColumn extends AbstractStringColumn<AbstractCodeType> {
+		public class ValueColumn extends AbstractStringColumn<ICodeType> {
 
 			@Override
-			public String getValue(AbstractCodeType object) {
+			public String getValue(ICodeType object) {
 				return object.getText();
 			}
 
@@ -141,11 +138,15 @@ public abstract class AbstractCodeAdminPage extends Composite {
 		}
 
 		public class ActiveColumn extends
-				AbstractCheckBoxColumn<AbstractCodeType> {
-
+				AbstractStringColumn<ICodeType> {
+			
 			@Override
-			public Boolean getValue(AbstractCodeType object) {
-				return object.isActive();
+			public String getValue(ICodeType object) {
+				if(object.isActive()){
+					return "X";
+				}else{
+					return "";
+				}
 			}
 
 			@Override
@@ -156,14 +157,14 @@ public abstract class AbstractCodeAdminPage extends Composite {
 		}
 
 		public class EditButtonColumn extends
-				AbstractColumn<AbstractCodeType, String> {
+				AbstractColumn<ICodeType, String> {
 
 			public EditButtonColumn() {
 				super(new ButtonCell());
-				setFieldUpdater(new FieldUpdater<AbstractCodeType, String>() {
+				setFieldUpdater(new FieldUpdater<ICodeType, String>() {
 
 					@Override
-					public void update(int index, AbstractCodeType object,
+					public void update(int index, ICodeType object,
 							String value) {
 						CodeEditForm form = new CodeEditForm();
 						form.addCloseHandler(new CloseHandler<PopupPanel>() {
@@ -171,16 +172,16 @@ public abstract class AbstractCodeAdminPage extends Composite {
 								reload();
 							}
 						});
-						// TODO
-						// form.setId(object.getId());
-						// form.startModify();
+						form.setId(object.getId());
+						form.setFormData(getPrototype());
+						form.startModify();
 
 					}
 				});
 			}
 
 			@Override
-			public String getValue(AbstractCodeType object) {
+			public String getValue(ICodeType object) {
 				return "Bearbeiten";
 			}
 

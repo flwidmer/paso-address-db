@@ -12,6 +12,8 @@ import ch.paso.address.client.forms.PersonForm.AddressGroupBox.TownField;
 import ch.paso.address.client.forms.PersonForm.DatesGroupbox.ActiveField;
 import ch.paso.address.client.forms.PersonForm.DatesGroupbox.EntryDateField;
 import ch.paso.address.client.forms.PersonForm.DatesGroupbox.LeftDateField;
+import ch.paso.address.client.forms.PersonForm.FunctionGroupBox.FunctionField;
+import ch.paso.address.client.forms.PersonForm.FunctionGroupBox.StufeField;
 import ch.paso.address.client.forms.PersonForm.InfoBox.BirthDateField;
 import ch.paso.address.client.forms.PersonForm.InfoBox.FirstNameField;
 import ch.paso.address.client.forms.PersonForm.InfoBox.LastNameField;
@@ -20,10 +22,14 @@ import ch.paso.address.client.forms.fields.AbstractButton;
 import ch.paso.address.client.forms.fields.AbstractCheckboxfield;
 import ch.paso.address.client.forms.fields.AbstractDateField;
 import ch.paso.address.client.forms.fields.AbstractGroupBox;
+import ch.paso.address.client.forms.fields.AbstractSmartField;
 import ch.paso.address.client.forms.fields.AbstractTextField;
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
+import ch.paso.address.shared.entities.FunctionCodeType;
+import ch.paso.address.shared.entities.ICodeType;
 import ch.paso.address.shared.entities.PersonEntity;
+import ch.paso.address.shared.entities.StufeCodeType;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -47,6 +53,8 @@ public class PersonForm extends AbstractForm {
 	private PhoneField m_phoneField;
 	private CellField m_cellField;
 	private EmailField m_emailField;
+	private StufeField m_stufeField;
+	private FunctionField m_functionField;
 
 	@Override
 	protected String getConfiguredTitle() {
@@ -104,7 +112,7 @@ public class PersonForm extends AbstractForm {
 		protected String getConfiguredLabel() {
 			return "Kontaktinformationen";
 		}
-		
+
 		@Override
 		protected List<Widget> getConfiguredFields() {
 			ArrayList<Widget> result = new ArrayList<Widget>();
@@ -173,6 +181,7 @@ public class PersonForm extends AbstractForm {
 		protected String getConfiguredLabel() {
 			return "Mitgliedschaft";
 		}
+
 		public class ActiveField extends AbstractCheckboxfield {
 			@Override
 			protected String getConfiguredLabel() {
@@ -212,6 +221,50 @@ public class PersonForm extends AbstractForm {
 		}
 	}
 
+	public class FunctionGroupBox extends AbstractGroupBox {
+
+		@Override
+		protected List<Widget> getConfiguredFields() {
+			setStufeField(new StufeField());
+			setFunctionField(new FunctionField());
+			ArrayList<Widget> result = new ArrayList<Widget>();
+			result.add(getStufeField());
+			result.add(getFunctionField());
+			return result;
+		}
+
+		@Override
+		protected String getConfiguredLabel() {
+			return "Funktionen";
+		}
+
+		public class StufeField extends AbstractSmartField<StufeCodeType> {
+			@Override
+			protected String getConfiguredLabel() {
+				return "Stufe";
+			}
+
+			@Override
+			protected StufeCodeType getConfiguredPrototype() {
+				return new StufeCodeType();
+			}
+
+		}
+
+		public class FunctionField extends AbstractSmartField<FunctionCodeType> {
+			@Override
+			protected FunctionCodeType getConfiguredPrototype() {
+				return new FunctionCodeType();
+			}
+
+			@Override
+			protected String getConfiguredLabel() {
+				return "Funktion";
+			}
+		}
+
+	}
+
 	public class OkButton extends AbstractButton {
 		@Override
 		protected String getConfiguredLabel() {
@@ -242,6 +295,7 @@ public class PersonForm extends AbstractForm {
 		result.add(new InfoBox());
 		result.add(new AddressGroupBox());
 		result.add(new DatesGroupbox());
+		result.add(new FunctionGroupBox());
 		return result;
 	}
 
@@ -350,6 +404,8 @@ public class PersonForm extends AbstractForm {
 		getPhoneField().setValue(result.getPhone());
 		getCellField().setValue(result.getCell());
 		getEmailField().setValue(result.getEmail());
+		getStufeField().setValueString(result.getStufe());
+		getFunctionField().setValueString(result.getFunction());
 		setId(result.getId());
 	}
 
@@ -368,6 +424,8 @@ public class PersonForm extends AbstractForm {
 		p.setPhone(getPhoneField().getValue());
 		p.setCell(getCellField().getValue());
 		p.setEmail(getEmailField().getValue());
+		p.setStufe(getStufeField().getValueString());
+		p.setFunction(getFunctionField().getValueString());
 		p.setId(getId());
 		return p;
 	}
@@ -474,6 +532,22 @@ public class PersonForm extends AbstractForm {
 
 	public EmailField getEmailField() {
 		return m_emailField;
+	}
+
+	public void setStufeField(StufeField stufeField) {
+		m_stufeField = stufeField;
+	}
+
+	public StufeField getStufeField() {
+		return m_stufeField;
+	}
+
+	public void setFunctionField(FunctionField functionField) {
+		m_functionField = functionField;
+	}
+
+	public FunctionField getFunctionField() {
+		return m_functionField;
 	}
 
 }

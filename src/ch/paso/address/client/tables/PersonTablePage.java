@@ -90,6 +90,8 @@ public class PersonTablePage extends Composite {
 			cols.add(new CellColumn());
 			cols.add(new EmailColumn());
 			cols.add(new BirthdayColumn());
+			cols.add(new StufeColumn());
+			cols.add(new FunctionColumn());
 			cols.add(new EditButtonColumn());
 			cols.add(new DeleteButtonColumn());
 			return cols;
@@ -216,6 +218,30 @@ public class PersonTablePage extends Composite {
 			}
 		}
 
+		public class StufeColumn extends AbstractStringColumn<PersonEntity> {
+			@Override
+			public String getConfiguredTitle() {
+				return "Stufe";
+			}
+
+			@Override
+			public String getValue(PersonEntity object) {
+				return object.getStufe();
+			}
+		}
+
+		public class FunctionColumn extends AbstractStringColumn<PersonEntity> {
+			@Override
+			public String getConfiguredTitle() {
+				return "Funktion";
+			}
+
+			@Override
+			public String getValue(PersonEntity object) {
+				return object.getFunction();
+			}
+		}
+
 		public class EditButtonColumn extends
 				AbstractColumn<PersonEntity, String> {
 
@@ -257,20 +283,22 @@ public class PersonTablePage extends Composite {
 					@Override
 					public void update(final int index, PersonEntity object,
 							String value) {
-						
-						IPersonServiceAsync svc = GWT.create(IPersonService.class);
-						svc.deletePerson(object.getId(), new AsyncCallback<Void>() {
-							@Override
-							public void onFailure(Throwable caught) {
-								// TODO Auto-generated method stub
-								
-							}
 
-							@Override
-							public void onSuccess(Void result) {
-								reload();
-							}
-						});
+						IPersonServiceAsync svc = GWT
+								.create(IPersonService.class);
+						svc.deletePerson(object.getId(),
+								new AsyncCallback<Void>() {
+									@Override
+									public void onFailure(Throwable caught) {
+										// TODO Auto-generated method stub
+
+									}
+
+									@Override
+									public void onSuccess(Void result) {
+										reload();
+									}
+								});
 					}
 				});
 			}

@@ -1,10 +1,12 @@
 package ch.paso.address.client.navigation;
 
 import ch.paso.address.client.tables.AdminPage;
+import ch.paso.address.client.tables.ImportPage;
 import ch.paso.address.client.tables.PersonTablePage;
 
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -12,10 +14,10 @@ import com.google.gwt.user.client.ui.Widget;
 public class Navigation extends Composite {
 
 	private VerticalPanel m_panel;
-	private RootPanel m_rootPanel;
+	private Panel m_rootPanel;
 	private Widget m_activeWidget;
 
-	public Navigation(RootPanel rootPanel) {
+	public Navigation(Panel rootPanel) {
 		setPanel(new VerticalPanel());
 		initWidget(getPanel());
 		setRootPanel(rootPanel);
@@ -26,6 +28,7 @@ public class Navigation extends Composite {
 		getRootPanel().add(new PersonTablePage());
 		initNavigation();
 		getPanel().add(new PersonTableLink(this));
+		getPanel().add(new ImportLink(this));
 		getPanel().add(new AdminLink(this));
 	}
 
@@ -41,11 +44,11 @@ public class Navigation extends Composite {
 		return m_panel;
 	}
 
-	public void setRootPanel(RootPanel rootPanel) {
+	public void setRootPanel(Panel rootPanel) {
 		m_rootPanel = rootPanel;
 	}
 
-	public RootPanel getRootPanel() {
+	public Panel getRootPanel() {
 		return m_rootPanel;
 	}
 
@@ -65,6 +68,24 @@ public class Navigation extends Composite {
 			return new PersonTablePage();
 		}
 
+	}
+	
+	public class ImportLink extends AbstractNavigationLink{
+
+		public ImportLink(Navigation n) {
+			super(n);
+		}
+
+		@Override
+		protected String getConfiguredText() {
+			return "Import / Export";
+		}
+
+		@Override
+		protected Widget getConfiguredTarget() {
+			return new ImportPage();
+		}
+		
 	}
 
 	public class AdminLink extends AbstractNavigationLink {

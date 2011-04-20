@@ -1,10 +1,8 @@
-ch.paso.address.client.services.ICodeService, false, false, false, false, _, 3844870187
-ch.paso.address.shared.entities.AbstractCodeType, true, false, true, false, ch.paso.address.shared.entities.AbstractCodeType/801031431, 801031431
-@ClientFields,ch.paso.address.shared.entities.AbstractCodeType,m_id,m_text,m_active
-[Lch.paso.address.shared.entities.AbstractCodeType;, true, true, false, false, [Lch.paso.address.shared.entities.AbstractCodeType;/997888528, 997888528
-ch.paso.address.shared.entities.FunctionCodeType, true, true, true, true, ch.paso.address.shared.entities.FunctionCodeType/1514342786, 1514342786
-@ClientFields,ch.paso.address.shared.entities.FunctionCodeType,m_functionId
-[Lch.paso.address.shared.entities.FunctionCodeType;, true, true, false, false, [Lch.paso.address.shared.entities.FunctionCodeType;/3545811407, 3545811407
+ch.paso.address.client.services.IPersonService, false, false, false, false, _, 3591765992
+ch.paso.address.shared.entities.PersonEntity, true, true, true, true, ch.paso.address.shared.entities.PersonEntity/4044878990, 4044878990
+@ClientFields,ch.paso.address.shared.entities.PersonEntity,m_id,m_firstName,m_lastName,m_vulgo,m_birthDate,m_entry,m_left,m_active,m_street,m_plz,m_town,m_phone,m_cell,m_email,m_stufe,m_function
+[Lch.paso.address.shared.entities.PersonEntity;, true, true, false, false, [Lch.paso.address.shared.entities.PersonEntity;/3643090555, 3643090555
+com.google.gwt.i18n.client.impl.DateRecord, true, true, true, true, com.google.gwt.i18n.client.impl.DateRecord/112389920, 112389920
 com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
 java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
 java.lang.Long, true, true, true, true, java.lang.Long/4227064769, 4227064769
@@ -12,10 +10,14 @@ java.lang.Number, true, false, true, false, java.lang.Number/300033342, 30003334
 java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
 java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
 java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131
+java.sql.Date, true, true, true, true, java.sql.Date/3996530531, 3996530531
+java.sql.Time, true, true, true, true, java.sql.Time/831929183, 831929183
+java.sql.Timestamp, true, true, true, true, java.sql.Timestamp/1769758459, 1769758459
 java.util.ArrayList, true, true, false, false, java.util.ArrayList/3821976829, 3821976829
 java.util.Arrays$ArrayList, true, true, false, false, java.util.Arrays$ArrayList/1243019747, 1243019747
 java.util.Collections$EmptyList, true, true, false, false, java.util.Collections$EmptyList/3012082351, 3012082351
 java.util.Collections$SingletonList, true, true, false, false, java.util.Collections$SingletonList/833432284, 833432284
+java.util.Date, true, true, true, true, java.util.Date/1659716317, 1659716317
 java.util.LinkedList, true, true, false, false, java.util.LinkedList/1060625595, 1060625595
 java.util.Stack, true, true, false, false, java.util.Stack/1031431137, 1031431137
 java.util.Vector, true, true, false, false, java.util.Vector/3125574444, 3125574444

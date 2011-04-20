@@ -19,6 +19,9 @@ public class PersonService extends RemoteServiceServlet implements
 	private static final long serialVersionUID = 1L;
 
 	public PersonEntity getPerson(Long key) {
+		if (key == null) {
+			return null;
+		}
 		EntityManager em = EMF.get().createEntityManager();
 		PersonEntity result;
 		try {
@@ -31,30 +34,34 @@ public class PersonService extends RemoteServiceServlet implements
 			em.close();
 		}
 	}
-	
-	public PersonEntity storePerson(PersonEntity p){
+
+	public PersonEntity storePerson(PersonEntity p) {
 		EntityManager em = EMF.get().createEntityManager();
+//		PersonEntity persistedVersion = getPerson(p.getId());
+//		if (persistedVersion != null) {
+//		}
 		em.persist(p);
 		em.merge(p);
 		em.close();
 		return p;
 	}
 
-	public List<PersonEntity> getAllPersons(){
+	public List<PersonEntity> getAllPersons() {
 		EntityManager em = EMF.get().createEntityManager();
-		List resultList = em.createQuery("SELECT p FROM PersonEntity p").getResultList();
+		List resultList = em.createQuery("SELECT p FROM PersonEntity p")
+				.getResultList();
 		List<PersonEntity> result = new ArrayList<PersonEntity>();
 
 		result.addAll(resultList);
 		em.close();
 		return result;
 	}
-	
-	public void deletePerson(Long key){
+
+	public void deletePerson(Long key) {
 		EntityManager em = EMF.get().createEntityManager();
 		em.getTransaction().begin();
 		PersonEntity p = em.find(PersonEntity.class, key);
-		if(p != null){
+		if (p != null) {
 			em.remove(p);
 		}
 		em.getTransaction().commit();

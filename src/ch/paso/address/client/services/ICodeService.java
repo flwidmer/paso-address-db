@@ -2,7 +2,7 @@ package ch.paso.address.client.services;
 
 import java.util.List;
 
-import ch.paso.address.shared.entities.AbstractCodeType;
+import ch.paso.address.shared.entities.ICodeType;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -10,10 +10,12 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("CodeService")
 public interface ICodeService extends RemoteService {
 
-	public List<AbstractCodeType> loadCodes(AbstractCodeType type);
+	public <T extends ICodeType>List<T> loadCodes(T type);
 
-	public AbstractCodeType storeCode(AbstractCodeType data);
+	public ICodeType storeCode(ICodeType data);
 
-	public AbstractCodeType loadCode(Long id);
+	public ICodeType loadCode(ICodeType prototype, Long id);
+
+	List<ICodeType> loadActiveCodes(ICodeType type);
 
 }
