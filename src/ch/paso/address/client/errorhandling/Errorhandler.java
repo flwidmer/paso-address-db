@@ -1,19 +1,18 @@
 package ch.paso.address.client.errorhandling;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.PopupPanel;
-
+import com.google.gwt.user.client.Window;
 
 public class Errorhandler {
 
-	public  static void handleError(Exception e){
+	public void handleError(Throwable e) {
+		Window.alert(e.getMessage());
 	}
-	
-	public  static void handleError(String msg, Exception e){
-		PopupPanel pp = new PopupPanel();
-		pp.add(new HTML("sss"));
-		pp.setGlassEnabled(true);
-		pp.center();
-		pp.show();
+
+	public static void handleError(String msg, Throwable e) {
+		Window.alert(msg + "\n" + e.getMessage());
+	}
+
+	public static void handleError(String msg) {
+		Window.alert(msg);
 	}
 }

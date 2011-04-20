@@ -1,5 +1,6 @@
 package ch.paso.address.client.forms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.Button;
@@ -9,13 +10,13 @@ public class ImportForm extends AbstractForm {
 
 	@Override
 	protected List<Widget> getConfiguredFields() {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 
 	@Override
 	protected List<Button> getConfiguredButtons() {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 
@@ -23,8 +24,7 @@ public class ImportForm extends AbstractForm {
 
 		@Override
 		public void execStore() {
-			// TODO Auto-generated method stub
-
+			//TODO
 		}
 
 		@Override

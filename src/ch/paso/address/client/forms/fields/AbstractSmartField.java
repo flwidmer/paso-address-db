@@ -3,6 +3,7 @@ package ch.paso.address.client.forms.fields;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.paso.address.client.errorhandling.Errorhandler;
 import ch.paso.address.client.services.ICodeService;
 import ch.paso.address.client.services.ICodeServiceAsync;
 import ch.paso.address.shared.entities.ICodeType;
@@ -66,7 +67,7 @@ public abstract class AbstractSmartField<T extends ICodeType> extends
 
 					@Override
 					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
+						Errorhandler.handleError("Error during loading codes", caught);
 					}
 				});
 	}

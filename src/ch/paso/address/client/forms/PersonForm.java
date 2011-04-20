@@ -3,6 +3,7 @@ package ch.paso.address.client.forms;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.paso.address.client.errorhandling.Errorhandler;
 import ch.paso.address.client.forms.PersonForm.AddressGroupBox.CellField;
 import ch.paso.address.client.forms.PersonForm.AddressGroupBox.EmailField;
 import ch.paso.address.client.forms.PersonForm.AddressGroupBox.PhoneField;
@@ -317,8 +318,7 @@ public class PersonForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					// TODO display failure message
-
+					Errorhandler.handleError("Error during storing", caught);
 				}
 
 				@Override
@@ -349,7 +349,7 @@ public class PersonForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					// TODO Alert to failure
+					Errorhandler.handleError("Error during storing", caught);
 				}
 
 				@Override
@@ -372,7 +372,7 @@ public class PersonForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					// TODO Alert to failure
+					Errorhandler.handleError("Error during loading", caught);
 				}
 			});
 		}

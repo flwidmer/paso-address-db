@@ -28,7 +28,6 @@ public class ImportPage extends Composite{
 			@Override
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
-				Errorhandler.handleError(null, null);
 			}
 		});
 		
