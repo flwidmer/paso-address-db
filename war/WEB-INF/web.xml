@@ -4,28 +4,37 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-  
-  <!-- Servlets -->
-    <servlet>
-  	<servlet-name>PersonService</servlet-name>
-  	<servlet-class>ch.paso.address.server.services.PersonService</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>CodeService</servlet-name>
-  	<servlet-class>ch.paso.address.server.services.CodeService</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>PersonService</servlet-name>
-  	<url-pattern>/ch_paso_address/PersonService</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>CodeService</servlet-name>
-  	<url-pattern>/ch_paso_address/CodeService</url-pattern>
-  </servlet-mapping>
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>Ch_paso_address.html</welcome-file>
-  </welcome-file-list>
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>ch.paso.address.server.auth.AuthenticationFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>PersonService</servlet-name>
+		<servlet-class>ch.paso.address.server.services.PersonService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CodeService</servlet-name>
+		<servlet-class>ch.paso.address.server.services.CodeService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PersonService</servlet-name>
+		<url-pattern>/ch_paso_address/PersonService</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CodeService</servlet-name>
+		<url-pattern>/ch_paso_address/CodeService</url-pattern>
+	</servlet-mapping>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>Ch_paso_address.html</welcome-file>
+	</welcome-file-list>
 
 
 </web-app>
