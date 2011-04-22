@@ -11,10 +11,14 @@
 
 	<filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/ch_paso_address/auth/*</url-pattern>
 	</filter-mapping>
 
 	<!-- Servlets -->
+	<servlet>
+		<servlet-name>authentication</servlet-name>
+		<servlet-class>ch.paso.address.server.auth.AuthenticationServlet</servlet-class>
+	</servlet>
 	<servlet>
 		<servlet-name>PersonService</servlet-name>
 		<servlet-class>ch.paso.address.server.services.PersonService</servlet-class>
@@ -24,12 +28,16 @@
 		<servlet-class>ch.paso.address.server.services.CodeService</servlet-class>
 	</servlet>
 	<servlet-mapping>
+		<servlet-name>authentication</servlet-name>
+		<url-pattern>authentication</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>PersonService</servlet-name>
-		<url-pattern>/ch_paso_address/PersonService</url-pattern>
+		<url-pattern>/ch_paso_address/auth/PersonService</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CodeService</servlet-name>
-		<url-pattern>/ch_paso_address/CodeService</url-pattern>
+		<url-pattern>/ch_paso_address/auth/CodeService</url-pattern>
 	</servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>

@@ -27,8 +27,12 @@ public class AuthenticationFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		// check auth
 		HttpSession session = ((HttpServletRequest) request).getSession();
-		
-		//		chain.doFilter(request, response);
+		Object attribute = session.getAttribute("user");
+		if(attribute != null){
+			chain.doFilter(request, response);
+		}else{
+			response.getWriter().write("please authenticate");
+		}
 	}
 
 	@Override

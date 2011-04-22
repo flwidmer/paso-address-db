@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import ch.paso.address.client.errorhandling.Errorhandler;
+import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.PersonForm;
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
@@ -70,7 +70,7 @@ public class PersonTablePage extends Composite {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Errorhandler.handleError("Error during reloading", caught);
+				ErrorHandler.handleError("Error during reloading", caught);
 			}
 		});
 	}
@@ -290,7 +290,7 @@ public class PersonTablePage extends Composite {
 								new AsyncCallback<Void>() {
 									@Override
 									public void onFailure(Throwable caught) {
-										Errorhandler.handleError("Error during deleting", caught);
+										ErrorHandler.handleError("Error during deleting", caught);
 									}
 
 									@Override

@@ -1,6 +1,6 @@
 package ch.paso.address.client.tables;
 
-import ch.paso.address.client.errorhandling.Errorhandler;
+import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.fields.AbstractButton;
 
 import com.google.gwt.event.dom.client.ClickEvent;

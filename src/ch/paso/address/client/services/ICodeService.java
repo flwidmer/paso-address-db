@@ -7,7 +7,7 @@ import ch.paso.address.shared.entities.ICodeType;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("CodeService")
+@RemoteServiceRelativePath("auth/CodeService")
 public interface ICodeService extends RemoteService {
 
 	public <T extends ICodeType>List<T> loadCodes(T type);

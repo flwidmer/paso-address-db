@@ -2,7 +2,7 @@ package ch.paso.address.client.errorhandling;
 
 import com.google.gwt.user.client.Window;
 
-public class Errorhandler {
+public class ErrorHandler {
 
 	public void handleError(Throwable e) {
 		Window.alert(e.getMessage());

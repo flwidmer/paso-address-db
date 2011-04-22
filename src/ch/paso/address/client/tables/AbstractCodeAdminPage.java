@@ -3,7 +3,7 @@ package ch.paso.address.client.tables;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.paso.address.client.errorhandling.Errorhandler;
+import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.CodeEditForm;
 import ch.paso.address.client.services.ICodeService;
 import ch.paso.address.client.services.ICodeServiceAsync;
@@ -79,7 +79,7 @@ public abstract class AbstractCodeAdminPage extends Composite {
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				Errorhandler.handleError("Error during loading", caught);				
+				ErrorHandler.handleError("Error during loading", caught);				
 			}
 		});
 

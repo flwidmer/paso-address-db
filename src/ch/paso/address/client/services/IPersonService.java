@@ -8,7 +8,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("PersonService")
+@RemoteServiceRelativePath("auth/PersonService")
 public interface IPersonService extends RemoteService {
 	/**
 	 * Utility class for simplifying access to the instance of async service.

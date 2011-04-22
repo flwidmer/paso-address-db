@@ -3,7 +3,7 @@ package ch.paso.address.client.forms;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.paso.address.client.errorhandling.Errorhandler;
+import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.CodeEditForm.MainBox.ActiveField;
 import ch.paso.address.client.forms.CodeEditForm.MainBox.ValueField;
 import ch.paso.address.client.forms.fields.AbstractButton;
@@ -152,7 +152,7 @@ public class CodeEditForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Errorhandler.handleError("Error during storing", caught);
+					ErrorHandler.handleError("Error during storing", caught);
 				}
 			});
 		}
@@ -169,7 +169,7 @@ public class CodeEditForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Errorhandler.handleError("Error during loading", caught);				}
+					ErrorHandler.handleError("Error during loading", caught);				}
 			});
 		}
 
@@ -190,7 +190,7 @@ public class CodeEditForm extends AbstractForm {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Errorhandler.handleError("Error during storing", caught);
+					ErrorHandler.handleError("Error during storing", caught);
 				}
 			});
 		}
