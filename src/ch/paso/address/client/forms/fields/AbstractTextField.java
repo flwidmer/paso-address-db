@@ -19,7 +19,7 @@ public abstract class AbstractTextField extends AbstractLabeledFormField {
 		} else {
 			setTextBox(new TextBox());
 		}
-		getTextBox().setWidth(getConfiguredTextWidth());
+		getTextBox().setWidth(getConfiguredWidth());
 		setEnabled(getConfiguredEnabled());
 		setValue(getConfiguredInitialValue());
 		add(m_textBox);
@@ -40,7 +40,7 @@ public abstract class AbstractTextField extends AbstractLabeledFormField {
 	protected void execEnter() {
 	}
 
-	protected String getConfiguredTextWidth() {
+	protected String getConfiguredWidth() {
 		return "100px";
 	}
 

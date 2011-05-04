@@ -1,26 +1,26 @@
 package ch.paso.address.client;
 
+import java.util.List;
+
 import ch.paso.address.client.auth.ClientAuthenticator;
 import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.navigation.Navigation;
+import ch.paso.address.client.services.ICodeService;
+import ch.paso.address.client.services.ICodeServiceAsync;
+import ch.paso.address.shared.entities.ICodeType;
+import ch.paso.address.shared.entities.StufeCodeType;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.ibm.icu.impl.ICUBinary.Authenticate;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class Ch_paso_address implements EntryPoint {
-	/**
-	 * The message displayed to the user when the server cannot be reached or
-	 * returns an error.
-	 */
-	private static final String SERVER_ERROR = "An error occurred while "
-			+ "attempting to contact the server. Please check your network "
-			+ "connection and try again.";
-
 	/**
 	 * This is the entry point method.
 	 */
@@ -30,7 +30,23 @@ public class Ch_paso_address implements EntryPoint {
 	private static Navigation S_navigation;
 
 	public void onModuleLoad() {
-		// check if user is logged in
+		ICodeServiceAsync svc = GWT.create(ICodeService.class);
+		svc.loadActiveCodes(new StufeCodeType(),
+				new AsyncCallback<List<ICodeType>>() {
+
+					public void onFailure(Throwable caught) {
+						authenticate();
+					}
+
+					public void onSuccess(List<ICodeType> result) {
+						// TODO get username / password
+						display();
+
+					}
+				});
+	}
+
+	private void authenticate() {
 		ClientAuthenticator ca = new ClientAuthenticator();
 		ca.getAuthenticationCredentials(new AsyncCallback<String[]>() {
 
@@ -48,8 +64,6 @@ public class Ch_paso_address implements EntryPoint {
 			}
 		});
 
-		// if user is not logged in, display prompt
-
 	}
 
 	private void display() {
@@ -58,6 +72,7 @@ public class Ch_paso_address implements EntryPoint {
 		rootPanel.add(sp);
 		Navigation navigation = new Navigation(sp);
 		setNavigation(navigation);
+		getNavigation().setLogin(getUsername());
 		RootPanel.get("navigation").add(navigation);
 	}
 

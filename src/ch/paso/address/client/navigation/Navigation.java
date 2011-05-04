@@ -4,10 +4,9 @@ import ch.paso.address.client.tables.AdminPage;
 import ch.paso.address.client.tables.ImportPage;
 import ch.paso.address.client.tables.PersonTablePage;
 
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -16,6 +15,7 @@ public class Navigation extends Composite {
 	private VerticalPanel m_panel;
 	private Panel m_rootPanel;
 	private Widget m_activeWidget;
+	private Label m_loginLabel = new Label();
 
 	public Navigation(Panel rootPanel) {
 		setPanel(new VerticalPanel());
@@ -30,6 +30,11 @@ public class Navigation extends Composite {
 		getPanel().add(new PersonTableLink(this));
 		getPanel().add(new ImportLink(this));
 		getPanel().add(new AdminLink(this));
+		getPanel().add(m_loginLabel);
+	}
+
+	public void setLogin(String name) {
+		m_loginLabel.setText("Logged in as: " + name);
 	}
 
 	private void initNavigation() {
@@ -69,8 +74,8 @@ public class Navigation extends Composite {
 		}
 
 	}
-	
-	public class ImportLink extends AbstractNavigationLink{
+
+	public class ImportLink extends AbstractNavigationLink {
 
 		public ImportLink(Navigation n) {
 			super(n);
@@ -85,7 +90,7 @@ public class Navigation extends Composite {
 		protected Widget getConfiguredTarget() {
 			return new ImportPage();
 		}
-		
+
 	}
 
 	public class AdminLink extends AbstractNavigationLink {

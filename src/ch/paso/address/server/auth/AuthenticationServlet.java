@@ -39,6 +39,9 @@ public class AuthenticationServlet extends HttpServlet {
 			}
 			
 			
+		}if(action.equals("logout")){
+			HttpSession session = req.getSession();
+			session.removeAttribute("user");
 		}
 		
 	}

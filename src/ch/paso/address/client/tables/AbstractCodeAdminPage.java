@@ -65,21 +65,21 @@ public abstract class AbstractCodeAdminPage extends Composite {
 		});
 		getPanel().add(newButton);
 		reload();
-		// TODO new button
+		// TODO delete button (admin only)
 	}
 
 	public void reload() {
 		ICodeServiceAsync svc = GWT.create(ICodeService.class);
 		svc.loadCodes(getConfiguredPrototype(), new AsyncCallback<List>() {
-			
+
 			@Override
 			public void onSuccess(List result) {
 				getTheTable().setRowData(result);
 			}
-			
+
 			@Override
 			public void onFailure(Throwable caught) {
-				ErrorHandler.handleError("Error during loading", caught);				
+				ErrorHandler.handleError("Error during loading", caught);
 			}
 		});
 
@@ -137,14 +137,13 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 		}
 
-		public class ActiveColumn extends
-				AbstractStringColumn<ICodeType> {
-			
+		public class ActiveColumn extends AbstractStringColumn<ICodeType> {
+
 			@Override
 			public String getValue(ICodeType object) {
-				if(object.isActive()){
+				if (object.isActive()) {
 					return "X";
-				}else{
+				} else {
 					return "";
 				}
 			}
@@ -156,16 +155,14 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 		}
 
-		public class EditButtonColumn extends
-				AbstractColumn<ICodeType, String> {
+		public class EditButtonColumn extends AbstractColumn<ICodeType, String> {
 
 			public EditButtonColumn() {
 				super(new ButtonCell());
 				setFieldUpdater(new FieldUpdater<ICodeType, String>() {
 
 					@Override
-					public void update(int index, ICodeType object,
-							String value) {
+					public void update(int index, ICodeType object, String value) {
 						CodeEditForm form = new CodeEditForm();
 						form.addCloseHandler(new CloseHandler<PopupPanel>() {
 							public void onClose(CloseEvent<PopupPanel> event) {

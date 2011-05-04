@@ -11,6 +11,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
@@ -23,6 +24,14 @@ public class ClientAuthenticator {
 	private UsernameField m_usernameField;
 	private DecoratedPopupPanel m_panel;
 	private AsyncCallback<String[]> m_callback;
+
+	public void logout() throws RequestException {
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.POST,
+				"/authentication");
+		builder.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		builder.setRequestData("action=logout");
+		builder.send();
+	}
 
 	public void getAuthenticationCredentials(AsyncCallback<String[]> callback) {
 		m_callback = callback;
@@ -47,7 +56,10 @@ public class ClientAuthenticator {
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.POST,
 				"/authentication");
 		builder.setHeader("Content-Type", "application/x-www-form-urlencoded");
-		builder.setRequestData("action=auth&user=fwi&password=asd");
+		builder.setRequestData("action=auth&user="
+				+ URL.encodeQueryString(m_usernameField.getValue())
+				+ "&password="
+				+ URL.encodeQueryString(m_passwordField.getValue()));
 		builder.setCallback(new RequestCallback() {
 
 			@Override
