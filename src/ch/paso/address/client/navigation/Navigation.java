@@ -1,9 +1,15 @@
 package ch.paso.address.client.navigation;
 
+import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.tables.AdminPage;
 import ch.paso.address.client.tables.ImportPage;
 import ch.paso.address.client.tables.PersonTablePage;
 
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
@@ -33,8 +39,28 @@ public class Navigation extends Composite {
 		getPanel().add(m_loginLabel);
 	}
 
-	public void setLogin(String name) {
-		m_loginLabel.setText("Logged in as: " + name);
+	public void setLogin(){
+		RequestBuilder rb = new RequestBuilder(RequestBuilder.POST,
+				"/authentication");
+		rb.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		rb.setRequestData("action=user");
+		rb.setCallback(new RequestCallback() {
+
+			@Override
+			public void onResponseReceived(Request request, Response response) {
+				m_loginLabel.setText("Logged in as: " + response.getText());
+			}
+
+			@Override
+			public void onError(Request request, Throwable exception) {
+				ErrorHandler.handleError(exception);
+			}
+		});
+		try {
+			rb.send();
+		} catch (RequestException e) {
+			ErrorHandler.handleError(e);
+		}
 	}
 
 	private void initNavigation() {

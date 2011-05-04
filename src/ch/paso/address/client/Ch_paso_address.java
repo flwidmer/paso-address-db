@@ -72,7 +72,7 @@ public class Ch_paso_address implements EntryPoint {
 		rootPanel.add(sp);
 		Navigation navigation = new Navigation(sp);
 		setNavigation(navigation);
-		getNavigation().setLogin(getUsername());
+		getNavigation().setLogin();
 		RootPanel.get("navigation").add(navigation);
 	}
 

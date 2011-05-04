@@ -31,8 +31,7 @@ public class ErrorHandler {
 
 			@Override
 			public void onSuccess(String[] result) {
-				Ch_paso_address.getNavigation().setLogin(
-						Ch_paso_address.getUsername());
+				Ch_paso_address.getNavigation().setLogin();
 			}
 
 			@Override

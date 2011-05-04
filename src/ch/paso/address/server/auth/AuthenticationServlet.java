@@ -24,31 +24,42 @@ public class AuthenticationServlet extends HttpServlet {
 		handle(req, resp);
 	}
 
-	public void handle(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		//determine action
+	public void handle(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		// determine action
 		String action = req.getParameter("action");
-		
-		if(action.equals("auth")){
-			//authenticate
+
+		if (action.equals("auth")) {
+			// authenticate
 			String user = req.getParameter("user");
 			String password = req.getParameter("password");
-			if(authenticate(user, password)){
+			if (authenticate(user, password)) {
 				HttpSession session = req.getSession();
 				session.setAttribute("user", user);
 				resp.getWriter().append("auth OK");
 			}
-			
-			
-		}if(action.equals("logout")){
+
+		}
+		if (action.equals("logout")) {
 			HttpSession session = req.getSession();
 			session.removeAttribute("user");
 		}
-		
+		if (action.equals("user")) {
+			// check if authenticated
+			String username = (String) req.getSession().getAttribute("user");
+			if (username != null) {
+				resp.getWriter().append(username);
+			} else {
+				resp.sendError(HttpServletResponse.SC_FORBIDDEN,
+						"User is not authorized");
+			}
+		}
+
 	}
-	
+
 	public boolean authenticate(String username, String password) {
 		if (username.equals("fwi") && password.equals("asd")) {
-			
+
 			return true;
 		} else {
 			return false;
