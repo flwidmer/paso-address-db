@@ -119,7 +119,7 @@ public class PersonTablePage extends Composite {
 
 			@Override
 			public String getConfiguredTitle() {
-				return "LastName";
+				return "Nachname";
 			}
 		}
 

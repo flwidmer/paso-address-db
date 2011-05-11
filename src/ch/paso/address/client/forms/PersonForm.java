@@ -19,7 +19,6 @@ import ch.paso.address.client.forms.PersonForm.InfoBox.BirthDateField;
 import ch.paso.address.client.forms.PersonForm.InfoBox.FirstNameField;
 import ch.paso.address.client.forms.PersonForm.InfoBox.LastNameField;
 import ch.paso.address.client.forms.PersonForm.InfoBox.VulgoField;
-import ch.paso.address.client.forms.fields.AbstractButton;
 import ch.paso.address.client.forms.fields.AbstractCheckboxfield;
 import ch.paso.address.client.forms.fields.AbstractDateField;
 import ch.paso.address.client.forms.fields.AbstractGroupBox;
@@ -28,14 +27,11 @@ import ch.paso.address.client.forms.fields.AbstractTextField;
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
 import ch.paso.address.shared.entities.FunctionCodeType;
-import ch.paso.address.shared.entities.ICodeType;
 import ch.paso.address.shared.entities.PersonEntity;
 import ch.paso.address.shared.entities.StufeCodeType;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PersonForm extends AbstractForm {
@@ -266,30 +262,6 @@ public class PersonForm extends AbstractForm {
 
 	}
 
-	public class OkButton extends AbstractButton {
-		@Override
-		protected String getConfiguredLabel() {
-			return "Ok";
-		}
-
-		@Override
-		protected void execClick(ClickEvent event) {
-			doOk();
-		}
-	}
-
-	public class CancelButton extends AbstractButton {
-		@Override
-		protected String getConfiguredLabel() {
-			return "Cancel";
-		}
-
-		@Override
-		protected void execClick(ClickEvent event) {
-			doCancel();
-		}
-	}
-
 	@Override
 	protected List<Widget> getConfiguredFields() {
 		List<Widget> result = new ArrayList<Widget>();
@@ -297,14 +269,6 @@ public class PersonForm extends AbstractForm {
 		result.add(new AddressGroupBox());
 		result.add(new DatesGroupbox());
 		result.add(new FunctionGroupBox());
-		return result;
-	}
-
-	@Override
-	protected List<Button> getConfiguredButtons() {
-		List<Button> result = new ArrayList<Button>();
-		result.add(new OkButton());
-		result.add(new CancelButton());
 		return result;
 	}
 

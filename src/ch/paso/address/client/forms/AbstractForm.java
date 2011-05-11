@@ -1,7 +1,11 @@
 package ch.paso.address.client.forms;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ch.paso.address.client.forms.fields.AbstractButton;
+
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -64,7 +68,12 @@ public abstract class AbstractForm extends DialogBox {
 		}
 	}
 
-	protected abstract List<Button> getConfiguredButtons();
+	protected List<Button> getConfiguredButtons(){
+		ArrayList<Button> result = new ArrayList<Button>();
+		result.add(new OkButton());
+		result.add(new CancelButton());
+		return result;
+	}
 
 	public void setMainPanel(VerticalPanel mainPanel) {
 		m_mainPanel = mainPanel;
@@ -140,4 +149,29 @@ public abstract class AbstractForm extends DialogBox {
 	public void doCancel() {
 		hide();
 	}
+	public class OkButton extends AbstractButton {
+		@Override
+		protected String getConfiguredLabel() {
+			return "Ok";
+		}
+
+		@Override
+		protected void execClick(ClickEvent event) {
+			doOk();
+		}
+	}
+	
+	public class CancelButton extends AbstractButton {
+		@Override
+		protected String getConfiguredLabel() {
+			return "Cancel";
+		}
+
+		@Override
+		protected void execClick(ClickEvent event) {
+			doCancel();
+		}
+	}
 }
+
+

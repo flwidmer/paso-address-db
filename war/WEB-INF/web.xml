@@ -27,6 +27,14 @@
 		<servlet-name>CodeService</servlet-name>
 		<servlet-class>ch.paso.address.server.services.CodeService</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>personimport</servlet-name>
+		<servlet-class>ch.paso.address.server.fileupload.PersonImportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>personimport</servlet-name>
+		<url-pattern>/ch_paso_address/auth/personimport</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>authentication</servlet-name>
 		<url-pattern>authentication</url-pattern>

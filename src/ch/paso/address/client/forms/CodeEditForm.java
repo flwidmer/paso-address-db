@@ -6,7 +6,6 @@ import java.util.List;
 import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.CodeEditForm.MainBox.ActiveField;
 import ch.paso.address.client.forms.CodeEditForm.MainBox.ValueField;
-import ch.paso.address.client.forms.fields.AbstractButton;
 import ch.paso.address.client.forms.fields.AbstractCheckboxfield;
 import ch.paso.address.client.forms.fields.AbstractGroupBox;
 import ch.paso.address.client.forms.fields.AbstractTextField;
@@ -15,9 +14,7 @@ import ch.paso.address.client.services.ICodeServiceAsync;
 import ch.paso.address.shared.entities.ICodeType;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CodeEditForm extends AbstractForm {
@@ -31,14 +28,6 @@ public class CodeEditForm extends AbstractForm {
 	protected List<Widget> getConfiguredFields() {
 		ArrayList<Widget> result = new ArrayList<Widget>();
 		result.add(new MainBox());
-		return result;
-	}
-
-	@Override
-	protected List<Button> getConfiguredButtons() {
-		List<Button> result = new ArrayList<Button>();
-		result.add(new OkButton());
-		result.add(new CancelButton());
 		return result;
 	}
 
@@ -113,29 +102,8 @@ public class CodeEditForm extends AbstractForm {
 		return data;
 	}
 
-	public class OkButton extends AbstractButton {
-		@Override
-		protected String getConfiguredLabel() {
-			return "Ok";
-		}
 
-		@Override
-		protected void execClick(ClickEvent event) {
-			doOk();
-		}
-	}
-
-	public class CancelButton extends AbstractButton {
-		@Override
-		protected String getConfiguredLabel() {
-			return "Cancel";
-		}
-
-		@Override
-		protected void execClick(ClickEvent event) {
-			doCancel();
-		}
-	}
+	
 
 	public class ModifyHandler implements IHandler {
 
