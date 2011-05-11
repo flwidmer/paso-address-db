@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +21,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public abstract class AbstractFileUploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 5177386837042777182L;
-
-	private StringBuilder m_errorLog = new StringBuilder();
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {

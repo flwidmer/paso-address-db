@@ -120,7 +120,7 @@ public class ImportForm extends AbstractForm {
 				@Override
 				public void onSubmitComplete(SubmitCompleteEvent event) {
 					String results = event.getResults();
-					if (results.isEmpty()) {
+					if (results == null || results.isEmpty()) {
 						hide();
 					} else {
 						Window.alert(results);

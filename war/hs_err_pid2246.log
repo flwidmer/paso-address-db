@@ -1,0 +1,632 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (constantPoolOop.cpp:76), pid=2246, tid=2375023472
+#  guarantee(error != (symbolOop)NULL) failed: tag mismatch with resolution error table
+#
+# JRE version: 6.0_24-b07
+# Java VM: Java HotSpot(TM) Server VM (19.1-b02 mixed mode linux-x86 )
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0ae02000):  JavaThread "Code server for ch_paso_address from Mozilla/5.0 (X11; Linux i686; rv:2.0) Gecko/20100101 Firefox/4.0 on http://127.0.0.1:8888/Ch_paso_address.html?gwt.codesvr=127.0.0.1:9997 @ xYe:JAjOmHgQL#&C" daemon [_thread_in_vm, id=2322, stack(0x8d8af000,0x8d900000)]
+
+Stack: [0x8d8af000,0x8d900000],  sp=0x8d8fdd0c,  free space=315k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x708370]
+V  [libjvm.so+0x2e89fe]
+V  [libjvm.so+0x2e429b]
+V  [libjvm.so+0x3c4b72]
+j  ch.paso.address.client.tables.ImportPage.onLoad()V+11
+j  com.google.gwt.user.client.ui.Composite.onAttach()V+39
+j  com.google.gwt.user.client.ui.Widget.setParent(Lcom/google/gwt/user/client/ui/Widget;)V+118
+j  com.google.gwt.user.client.ui.Panel.adopt(Lcom/google/gwt/user/client/ui/Widget;)V+23
+j  com.google.gwt.user.client.ui.SimplePanel.setWidget(Lcom/google/gwt/user/client/ui/Widget;)V+58
+j  com.google.gwt.user.client.ui.SimplePanel.add(Lcom/google/gwt/user/client/ui/Widget;)V+19
+j  ch.paso.address.client.navigation.Navigation.switchTo(Lcom/google/gwt/user/client/ui/Widget;)V+12
+j  ch.paso.address.client.navigation.AbstractNavigationLink$1.onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V+14
+j  com.google.gwt.event.dom.client.ClickEvent.dispatch(Lcom/google/gwt/event/dom/client/ClickHandler;)V+2
+j  com.google.gwt.event.dom.client.ClickEvent.dispatch(Lcom/google/gwt/event/shared/EventHandler;)V+5
+j  com.google.gwt.event.shared.SimpleEventBus.doFire(Lcom/google/gwt/event/shared/GwtEvent;Ljava/lang/Object;)V+100
+j  com.google.gwt.event.shared.SimpleEventBus.fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)V+17
+j  com.google.gwt.event.shared.HandlerManager.fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)V+29
+j  com.google.gwt.user.client.ui.Widget.fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)V+12
+j  com.google.gwt.event.dom.client.DomEvent.fireNativeEvent(Lcom/google/gwt/dom/client/NativeEvent;Lcom/google/gwt/event/shared/HasHandlers;Lcom/google/gwt/dom/client/Element;)V+86
+j  com.google.gwt.user.client.ui.Widget.onBrowserEvent(Lcom/google/gwt/user/client/Event;)V+65
+j  com.google.gwt.user.client.DOM.dispatchEventImpl(Lcom/google/gwt/user/client/Event;Lcom/google/gwt/user/client/Element;Lcom/google/gwt/user/client/EventListener;)V+23
+j  com.google.gwt.user.client.DOM.dispatchEvent(Lcom/google/gwt/user/client/Event;Lcom/google/gwt/user/client/Element;Lcom/google/gwt/user/client/EventListener;)V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x3cfb21]
+V  [libjvm.so+0x5c5478]
+V  [libjvm.so+0x3cf94f]
+V  [libjvm.so+0x61ad5b]
+V  [libjvm.so+0x61e137]
+V  [libjvm.so+0x44d35f]
+C  [libjava.so+0x151d4]  Java_sun_reflect_NativeMethodAccessorImpl_invoke0+0x34
+j  sun.reflect.NativeMethodAccessorImpl.invoke0(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+87
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  com.google.gwt.dev.shell.MethodAdaptor.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+13
+j  com.google.gwt.dev.shell.MethodDispatch.invoke(Lcom/google/gwt/dev/shell/JsValue;[Lcom/google/gwt/dev/shell/JsValue;Lcom/google/gwt/dev/shell/JsValue;)Z+152
+j  com.google.gwt.dev.shell.OophmSessionHandler.invoke(Lcom/google/gwt/dev/shell/BrowserChannelServer;Lcom/google/gwt/dev/shell/BrowserChannel$Value;I[Lcom/google/gwt/dev/shell/BrowserChannel$Value;)Lcom/google/gwt/dev/shell/BrowserChannel$SessionHandler$ExceptionOrReturnValue;+415
+j  com.google.gwt.dev.shell.BrowserChannelServer.reactToMessagesWhileWaitingForReturn(Lcom/google/gwt/dev/shell/BrowserChannelServer$SessionHandlerServer;)Lcom/google/gwt/dev/shell/BrowserChannel$ReturnMessage;+101
+j  com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(Lcom/google/gwt/dev/shell/CompilingClassLoader;Lcom/google/gwt/dev/shell/JsValueOOPHM;Ljava/lang/String;[Lcom/google/gwt/dev/shell/JsValueOOPHM;Lcom/google/gwt/dev/shell/JsValueOOPHM;)V+81
+j  com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Lcom/google/gwt/dev/shell/JsValue;+240
+j  com.google.gwt.dev.shell.ModuleSpace.invokeNative(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Lcom/google/gwt/dev/shell/JsValue;+6
+j  com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;+7
+j  com.google.gwt.core.client.impl.Impl.apply(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+38
+j  com.google.gwt.core.client.impl.Impl.entry0(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+13
+j  sun.reflect.GeneratedMethodAccessor14.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+40
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  com.google.gwt.dev.shell.MethodAdaptor.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+13
+j  com.google.gwt.dev.shell.MethodDispatch.invoke(Lcom/google/gwt/dev/shell/JsValue;[Lcom/google/gwt/dev/shell/JsValue;Lcom/google/gwt/dev/shell/JsValue;)Z+152
+j  com.google.gwt.dev.shell.OophmSessionHandler.invoke(Lcom/google/gwt/dev/shell/BrowserChannelServer;Lcom/google/gwt/dev/shell/BrowserChannel$Value;I[Lcom/google/gwt/dev/shell/BrowserChannel$Value;)Lcom/google/gwt/dev/shell/BrowserChannel$SessionHandler$ExceptionOrReturnValue;+415
+j  com.google.gwt.dev.shell.BrowserChannelServer.reactToMessages(Lcom/google/gwt/dev/shell/BrowserChannelServer$SessionHandlerServer;)V+92
+j  com.google.gwt.dev.shell.BrowserChannelServer.processConnection()V+873
+j  com.google.gwt.dev.shell.BrowserChannelServer.run()V+1
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x3cfb21]
+V  [libjvm.so+0x5c5478]
+V  [libjvm.so+0x3cf395]
+V  [libjvm.so+0x3cf458]
+V  [libjvm.so+0x451be7]
+V  [libjvm.so+0x6c604f]
+V  [libjvm.so+0x5c6a6e]
+C  [libpthread.so.0+0x5cc9]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  ch.paso.address.client.tables.ImportPage.onLoad()V+11
+j  com.google.gwt.user.client.ui.Composite.onAttach()V+39
+j  com.google.gwt.user.client.ui.Widget.setParent(Lcom/google/gwt/user/client/ui/Widget;)V+118
+j  com.google.gwt.user.client.ui.Panel.adopt(Lcom/google/gwt/user/client/ui/Widget;)V+23
+j  com.google.gwt.user.client.ui.SimplePanel.setWidget(Lcom/google/gwt/user/client/ui/Widget;)V+58
+j  com.google.gwt.user.client.ui.SimplePanel.add(Lcom/google/gwt/user/client/ui/Widget;)V+19
+j  ch.paso.address.client.navigation.Navigation.switchTo(Lcom/google/gwt/user/client/ui/Widget;)V+12
+j  ch.paso.address.client.navigation.AbstractNavigationLink$1.onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V+14
+j  com.google.gwt.event.dom.client.ClickEvent.dispatch(Lcom/google/gwt/event/dom/client/ClickHandler;)V+2
+j  com.google.gwt.event.dom.client.ClickEvent.dispatch(Lcom/google/gwt/event/shared/EventHandler;)V+5
+j  com.google.gwt.event.shared.SimpleEventBus.doFire(Lcom/google/gwt/event/shared/GwtEvent;Ljava/lang/Object;)V+100
+j  com.google.gwt.event.shared.SimpleEventBus.fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)V+17
+j  com.google.gwt.event.shared.HandlerManager.fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)V+29
+j  com.google.gwt.user.client.ui.Widget.fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)V+12
+j  com.google.gwt.event.dom.client.DomEvent.fireNativeEvent(Lcom/google/gwt/dom/client/NativeEvent;Lcom/google/gwt/event/shared/HasHandlers;Lcom/google/gwt/dom/client/Element;)V+86
+j  com.google.gwt.user.client.ui.Widget.onBrowserEvent(Lcom/google/gwt/user/client/Event;)V+65
+j  com.google.gwt.user.client.DOM.dispatchEventImpl(Lcom/google/gwt/user/client/Event;Lcom/google/gwt/user/client/Element;Lcom/google/gwt/user/client/EventListener;)V+23
+j  com.google.gwt.user.client.DOM.dispatchEvent(Lcom/google/gwt/user/client/Event;Lcom/google/gwt/user/client/Element;Lcom/google/gwt/user/client/EventListener;)V+11
+v  ~StubRoutines::call_stub
+j  sun.reflect.NativeMethodAccessorImpl.invoke0(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+87
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  com.google.gwt.dev.shell.MethodAdaptor.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+13
+j  com.google.gwt.dev.shell.MethodDispatch.invoke(Lcom/google/gwt/dev/shell/JsValue;[Lcom/google/gwt/dev/shell/JsValue;Lcom/google/gwt/dev/shell/JsValue;)Z+152
+j  com.google.gwt.dev.shell.OophmSessionHandler.invoke(Lcom/google/gwt/dev/shell/BrowserChannelServer;Lcom/google/gwt/dev/shell/BrowserChannel$Value;I[Lcom/google/gwt/dev/shell/BrowserChannel$Value;)Lcom/google/gwt/dev/shell/BrowserChannel$SessionHandler$ExceptionOrReturnValue;+415
+j  com.google.gwt.dev.shell.BrowserChannelServer.reactToMessagesWhileWaitingForReturn(Lcom/google/gwt/dev/shell/BrowserChannelServer$SessionHandlerServer;)Lcom/google/gwt/dev/shell/BrowserChannel$ReturnMessage;+101
+j  com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(Lcom/google/gwt/dev/shell/CompilingClassLoader;Lcom/google/gwt/dev/shell/JsValueOOPHM;Ljava/lang/String;[Lcom/google/gwt/dev/shell/JsValueOOPHM;Lcom/google/gwt/dev/shell/JsValueOOPHM;)V+81
+j  com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Lcom/google/gwt/dev/shell/JsValue;+240
+j  com.google.gwt.dev.shell.ModuleSpace.invokeNative(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Lcom/google/gwt/dev/shell/JsValue;+6
+j  com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;+7
+j  com.google.gwt.core.client.impl.Impl.apply(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+38
+j  com.google.gwt.core.client.impl.Impl.entry0(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+13
+j  sun.reflect.GeneratedMethodAccessor14.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+40
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  com.google.gwt.dev.shell.MethodAdaptor.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+13
+j  com.google.gwt.dev.shell.MethodDispatch.invoke(Lcom/google/gwt/dev/shell/JsValue;[Lcom/google/gwt/dev/shell/JsValue;Lcom/google/gwt/dev/shell/JsValue;)Z+152
+j  com.google.gwt.dev.shell.OophmSessionHandler.invoke(Lcom/google/gwt/dev/shell/BrowserChannelServer;Lcom/google/gwt/dev/shell/BrowserChannel$Value;I[Lcom/google/gwt/dev/shell/BrowserChannel$Value;)Lcom/google/gwt/dev/shell/BrowserChannel$SessionHandler$ExceptionOrReturnValue;+415
+j  com.google.gwt.dev.shell.BrowserChannelServer.reactToMessages(Lcom/google/gwt/dev/shell/BrowserChannelServer$SessionHandlerServer;)V+92
+j  com.google.gwt.dev.shell.BrowserChannelServer.processConnection()V+873
+j  com.google.gwt.dev.shell.BrowserChannelServer.run()V+1
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x8e158400 JavaThread "pool-1-thread-2" daemon [_thread_blocked, id=2689, stack(0x8bbaf000,0x8bc00000)]
+  0x8d9ca400 JavaThread "pool-2-thread-2" [_thread_blocked, id=2329, stack(0x8bf00000,0x8bf51000)]
+  0x8d9c9400 JavaThread "pool-2-thread-1" [_thread_blocked, id=2328, stack(0x8c30d000,0x8c35e000)]
+  0x0b818800 JavaThread "com.google.appengine.repackaged.com.google.common.base.internal.Finalizer" daemon [_thread_blocked, id=2327, stack(0x8c3af000,0x8c400000)]
+  0x8d2bb400 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=2325, stack(0x8d808000,0x8d859000)]
+=>0x0ae02000 JavaThread "Code server for ch_paso_address from Mozilla/5.0 (X11; Linux i686; rv:2.0) Gecko/20100101 Firefox/4.0 on http://127.0.0.1:8888/Ch_paso_address.html?gwt.codesvr=127.0.0.1:9997 @ xYe:JAjOmHgQL#&C" daemon [_thread_in_vm, id=2322, stack(0x8d8af000,0x8d900000)]
+  0x0a481000 JavaThread "9461871@qtp-18602441-3" [_thread_blocked, id=2321, stack(0x8dcaf000,0x8dd00000)]
+  0x8dfd7400 JavaThread "com.google.gwt.thirdparty.guava.common.base.internal.Finalizer" daemon [_thread_blocked, id=2286, stack(0x8d859000,0x8d8aa000)]
+  0x8df16400 JavaThread "Timer-1" daemon [_thread_blocked, id=2285, stack(0x8dc29000,0x8dc7a000)]
+  0x8e370400 JavaThread "29732654@qtp-18602441-1 - Acceptor0 SelectChannelConnector@0.0.0.0:8888" [_thread_in_native, id=2282, stack(0x8e406000,0x8e457000)]
+  0x8e674c00 JavaThread "Code server listener" daemon [_thread_in_native, id=2278, stack(0x8e50d000,0x8e55e000)]
+  0x0a327400 JavaThread "Timer-0" daemon [_thread_blocked, id=2277, stack(0x8e55e000,0x8e5af000)]
+  0x8ec8b400 JavaThread "Thread-2" daemon [_thread_blocked, id=2275, stack(0x8e72d000,0x8e77e000)]
+  0x8ec9e400 JavaThread "Thread-1" [_thread_in_native, id=2274, stack(0x8e77e000,0x8e7cf000)]
+  0x0a25f400 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=2270, stack(0x8e850000,0x8e8a1000)]
+  0x0a259400 JavaThread "CompilerThread1" daemon [_thread_blocked, id=2269, stack(0x8e8a1000,0x8e922000)]
+  0x0a261800 JavaThread "CompilerThread0" daemon [_thread_blocked, id=2268, stack(0x8e922000,0x8e9a3000)]
+  0x0a115000 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=2264, stack(0x8eded000,0x8ee3e000)]
+  0x0a113800 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=2263, stack(0x8ee3e000,0x8ee8f000)]
+  0x0a110c00 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_blocked, id=2262, stack(0x8ee8f000,0x8eee0000)]
+  0x0a108000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2260, stack(0x8eee0000,0x8ef31000)]
+  0x0a0fa400 JavaThread "Finalizer" daemon [_thread_blocked, id=2259, stack(0x8ef31000,0x8ef82000)]
+  0x0a0f5800 JavaThread "Reference Handler" daemon [_thread_blocked, id=2258, stack(0x8ef82000,0x8efd3000)]
+  0x0a053000 JavaThread "main" [_thread_blocked, id=2247, stack(0xb69b3000,0xb6a04000)]
+
+Other Threads:
+  0x0a0f1c00 VMThread [stack: 0x8efd3000,0x8f054000] [id=2257]
+  0x0a263c00 WatcherThread [stack: 0x8e7cf000,0x8e850000] [id=2271]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 133312K, used 67121K [0xa8b70000, 0xb3610000, 0xb3610000)
+  eden space 94976K, 49% used [0xa8b70000,0xab8f06d8,0xae830000)
+  from space 38336K, 53% used [0xae830000,0xafc3c040,0xb0da0000)
+  to   space 37632K, 0% used [0xb1150000,0xb1150000,0xb3610000)
+ PSOldGen        total 98496K, used 36743K [0x93610000, 0x99640000, 0xa8b70000)
+  object space 98496K, 37% used [0x93610000,0x959f1e68,0x99640000)
+ PSPermGen       total 38016K, used 32593K [0x8f610000, 0x91b30000, 0x93610000)
+  object space 38016K, 85% used [0x8f610000,0x915e4730,0x91b30000)
+
+Dynamic libraries:
+08048000-08052000 r-xp 00000000 08:01 17697004   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/bin/java
+08052000-08053000 rwxp 00009000 08:01 17697004   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/bin/java
+0a048000-0c191000 rwxp 00000000 00:00 0          [heap]
+8a761000-8a9ea000 r-xp 00000000 08:01 17697088   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/motif21/libmawt.so
+8a9ea000-8a9fc000 rwxp 00288000 08:01 17697088   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/motif21/libmawt.so
+8a9fc000-8aa00000 rwxp 00000000 00:00 0 
+8aa00000-8ab00000 rwxp 00000000 00:00 0 
+8ac00000-8ad00000 rwxp 00000000 00:00 0 
+8af00000-8affc000 rwxp 00000000 00:00 0 
+8affc000-8b000000 ---p 00000000 00:00 0 
+8b000000-8b100000 rwxp 00000000 00:00 0 
+8b100000-8b2fd000 rwxp 00000000 00:00 0 
+8b2fd000-8b300000 ---p 00000000 00:00 0 
+8b300000-8b500000 rwxp 00000000 00:00 0 
+8b500000-8b700000 rwxp 00000000 00:00 0 
+8b700000-8b7ff000 rwxp 00000000 00:00 0 
+8b7ff000-8b800000 ---p 00000000 00:00 0 
+8b8e3000-8b9fc000 r-xp 00000000 08:01 12192509   /usr/lib/libX11.so.6.3.0
+8b9fc000-8b9fd000 r-xp 00118000 08:01 12192509   /usr/lib/libX11.so.6.3.0
+8b9fd000-8b9ff000 rwxp 00119000 08:01 12192509   /usr/lib/libX11.so.6.3.0
+8b9ff000-8ba00000 rwxp 00000000 00:00 0 
+8bbaf000-8bbb2000 ---p 00000000 00:00 0 
+8bbb2000-8bc00000 rwxp 00000000 00:00 0 
+8bc00000-8bced000 rwxp 00000000 00:00 0 
+8bced000-8bd00000 ---p 00000000 00:00 0 
+8bd00000-8bdff000 rwxp 00000000 00:00 0 
+8bdff000-8be00000 ---p 00000000 00:00 0 
+8be00000-8befd000 rwxp 00000000 00:00 0 
+8befd000-8bf00000 ---p 00000000 00:00 0 
+8bf00000-8bf03000 ---p 00000000 00:00 0 
+8bf03000-8bf51000 rwxp 00000000 00:00 0 
+8bf51000-8bfd5000 r-xp 00000000 08:01 17697053   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libawt.so
+8bfd5000-8bfdc000 rwxp 00084000 08:01 17697053   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libawt.so
+8bfdc000-8c000000 rwxp 00000000 00:00 0 
+8c000000-8c0fb000 rwxp 00000000 00:00 0 
+8c0fb000-8c100000 ---p 00000000 00:00 0 
+8c100000-8c1fb000 rwxp 00000000 00:00 0 
+8c1fb000-8c200000 ---p 00000000 00:00 0 
+8c200000-8c2ff000 rwxp 00000000 00:00 0 
+8c2ff000-8c300000 ---p 00000000 00:00 0 
+8c30d000-8c310000 ---p 00000000 00:00 0 
+8c310000-8c35e000 rwxp 00000000 00:00 0 
+8c35e000-8c35f000 r-xs 00000000 08:01 22813841   /var/cache/fontconfig/26de28bc8622bbc1fb67fd234c21975f-le32d4.cache-3
+8c35f000-8c360000 r-xs 00000000 08:01 22806592   /var/cache/fontconfig/c05880de57d1f5e948fdfacc138775d9-le32d4.cache-3
+8c360000-8c366000 r-xs 00000000 08:01 22806589   /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le32d4.cache-3
+8c366000-8c368000 r-xs 00000000 08:01 22806590   /var/cache/fontconfig/99e8ed0e538f840c565b6ed5dad60d56-le32d4.cache-3
+8c368000-8c36b000 r-xs 00000000 08:01 22806599   /var/cache/fontconfig/e383d7ea5fbe662a33d9b44caf393297-le32d4.cache-3
+8c36b000-8c371000 r-xs 00000000 08:01 22813765   /var/cache/fontconfig/401a5dd6b567794a1d18dd9342dfa604-le32d4.cache-3
+8c371000-8c374000 r-xs 00000000 08:01 22809493   /var/cache/fontconfig/2cd17615ca594fa2959ae173292e504c-le32d4.cache-3
+8c374000-8c375000 r-xs 00000000 08:01 22815211   /var/cache/fontconfig/e3fa16a14183b06aa45b3e009278fd14-le32d4.cache-3
+8c375000-8c376000 r-xs 00000000 08:01 22806600   /var/cache/fontconfig/e7071f4a29fa870f4323321c154eba04-le32d4.cache-3
+8c376000-8c379000 r-xs 00000000 08:01 22806586   /var/cache/fontconfig/6eb3985aa4124903f6ff08ba781cd364-le32d4.cache-3
+8c379000-8c37a000 r-xs 00000000 08:01 22806582   /var/cache/fontconfig/4c73fe0c47614734b17d736dbde7580a-le32d4.cache-3
+8c37a000-8c37b000 r-xs 00000000 08:01 22806575   /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le32d4.cache-3
+8c37b000-8c37c000 r-xs 00000000 08:01 22806584   /var/cache/fontconfig/6a53c69dea097a2d716e069445527da8-le32d4.cache-3
+8c37c000-8c380000 r-xs 00000000 08:01 22806591   /var/cache/fontconfig/a755afe4a08bf5b97852ceb7400b47bc-le32d4.cache-3
+8c380000-8c381000 r-xs 00000000 08:01 22815210   /var/cache/fontconfig/79517df041c92e3f2b4a9700e7dbe3c7-le32d4.cache-3
+8c381000-8c382000 r-xs 00000000 08:01 22815209   /var/cache/fontconfig/4abdb2dd99886b2b2d3168a6b22d0473-le32d4.cache-3
+8c382000-8c389000 r-xs 00000000 08:01 22806594   /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le32d4.cache-3
+8c3af000-8c3b2000 ---p 00000000 00:00 0 
+8c3b2000-8c400000 rwxp 00000000 00:00 0 
+8c400000-8c4ff000 rwxp 00000000 00:00 0 
+8c4ff000-8c500000 ---p 00000000 00:00 0 
+8c500000-8c5f2000 rwxp 00000000 00:00 0 
+8c5f2000-8c600000 ---p 00000000 00:00 0 
+8c600000-8c6f9000 rwxp 00000000 00:00 0 
+8c6f9000-8c700000 ---p 00000000 00:00 0 
+8c700000-8c7f2000 rwxp 00000000 00:00 0 
+8c7f2000-8c800000 ---p 00000000 00:00 0 
+8c800000-8c8f2000 rwxp 00000000 00:00 0 
+8c8f2000-8c900000 ---p 00000000 00:00 0 
+8c900000-8c9f9000 rwxp 00000000 00:00 0 
+8c9f9000-8ca00000 ---p 00000000 00:00 0 
+8ca00000-8caf9000 rwxp 00000000 00:00 0 
+8caf9000-8cb00000 ---p 00000000 00:00 0 
+8cb00000-8cb01000 r-xs 00000000 08:01 22815208   /var/cache/fontconfig/b9af901c4f3947128be824d599af5f25-le32d4.cache-3
+8cb01000-8cb0c000 r-xs 00000000 08:01 22806576   /var/cache/fontconfig/0f34bcd4b6ee430af32735b75db7f02b-le32d4.cache-3
+8cb0c000-8cb2e000 r-xs 00000000 08:01 22812181   /var/cache/fontconfig/365b55f210c0a22e9a19e35191240f32-le32d4.cache-3
+8cb2e000-8cb36000 r-xs 00000000 08:01 22806595   /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le32d4.cache-3
+8cb36000-8cb48000 r-xs 00000000 08:01 22814926   /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le32d4.cache-3
+8cb78000-8cbf1000 r-xp 00000000 08:01 17697101   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libfontmanager.so
+8cbf1000-8cbfb000 rwxp 00078000 08:01 17697101   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libfontmanager.so
+8cbfb000-8cc00000 rwxp 00000000 00:00 0 
+8cc00000-8cce8000 rwxp 00000000 00:00 0 
+8cce8000-8cd00000 ---p 00000000 00:00 0 
+8cd00000-8cdf9000 rwxp 00000000 00:00 0 
+8cdf9000-8ce00000 ---p 00000000 00:00 0 
+8ce00000-8cef9000 rwxp 00000000 00:00 0 
+8cef9000-8cf00000 ---p 00000000 00:00 0 
+8cf00000-8cfe6000 rwxp 00000000 00:00 0 
+8cfe6000-8d000000 ---p 00000000 00:00 0 
+8d000000-8d0ea000 rwxp 00000000 00:00 0 
+8d0ea000-8d100000 ---p 00000000 00:00 0 
+8d100000-8d1fa000 rwxp 00000000 00:00 0 
+8d1fa000-8d200000 ---p 00000000 00:00 0 
+8d200000-8d2e5000 rwxp 00000000 00:00 0 
+8d2e5000-8d300000 ---p 00000000 00:00 0 
+8d300000-8d3fb000 rwxp 00000000 00:00 0 
+8d3fb000-8d400000 ---p 00000000 00:00 0 
+8d400000-8d4fe000 rwxp 00000000 00:00 0 
+8d4fe000-8d500000 ---p 00000000 00:00 0 
+8d500000-8d600000 rwxp 00000000 00:00 0 
+8d600000-8d700000 rwxp 00000000 00:00 0 
+8d700000-8d7f1000 rwxp 00000000 00:00 0 
+8d7f1000-8d800000 ---p 00000000 00:00 0 
+8d800000-8d801000 r-xs 00000000 08:01 22815207   /var/cache/fontconfig/a18183678af55fd6535fa2d00e080189-le32d4.cache-3
+8d801000-8d805000 r-xs 00000000 08:01 22812780   /var/cache/fontconfig/515ca1ebc4b18308bea979be5704f9db-le32d4.cache-3
+8d805000-8d808000 r-xs 00000000 08:01 22806596   /var/cache/fontconfig/d60319d88cac85ba9e1a07bd06cfbb8c-le32d4.cache-3
+8d808000-8d80b000 ---p 00000000 00:00 0 
+8d80b000-8d859000 rwxp 00000000 00:00 0 
+8d859000-8d85c000 ---p 00000000 00:00 0 
+8d85c000-8d8aa000 rwxp 00000000 00:00 0 
+8d8aa000-8d8ac000 r-xs 00000000 08:01 22815206   /var/cache/fontconfig/90e84e89a4382a8db77728561d41356d-le32d4.cache-3
+8d8ac000-8d8af000 r-xs 00000000 08:01 22813775   /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le32d4.cache-3
+8d8af000-8d8b2000 ---p 00000000 00:00 0 
+8d8b2000-8d900000 rwxp 00000000 00:00 0 
+8d900000-8d9e5000 rwxp 00000000 00:00 0 
+8d9e5000-8da00000 ---p 00000000 00:00 0 
+8da00000-8dae5000 rwxp 00000000 00:00 0 
+8dae5000-8db00000 ---p 00000000 00:00 0 
+8db00000-8dbfd000 rwxp 00000000 00:00 0 
+8dbfd000-8dc00000 ---p 00000000 00:00 0 
+8dc00000-8dc01000 r-xs 00000000 08:01 22815205   /var/cache/fontconfig/b73ae53b2eee308c3d7feb99ac2d34cd-le32d4.cache-3
+8dc01000-8dc02000 r-xs 00000000 08:01 22815204   /var/cache/fontconfig/407fd690308a0b04640307de6deab6da-le32d4.cache-3
+8dc29000-8dc2c000 ---p 00000000 00:00 0 
+8dc2c000-8dc7a000 rwxp 00000000 00:00 0 
+8dc87000-8dc8f000 r-xs 00115000 08:01 17697196   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/resources.jar
+8dc8f000-8dc93000 r-xp 00000000 08:01 12192524   /usr/lib/libXdmcp.so.6.0.0
+8dc93000-8dc94000 r-xp 00003000 08:01 12192524   /usr/lib/libXdmcp.so.6.0.0
+8dc94000-8dc95000 rwxp 00004000 08:01 12192524   /usr/lib/libXdmcp.so.6.0.0
+8dc95000-8dcad000 r-xp 00000000 08:01 12193475   /usr/lib/libxcb.so.1.1.0
+8dcad000-8dcae000 r-xp 00017000 08:01 12193475   /usr/lib/libxcb.so.1.1.0
+8dcae000-8dcaf000 rwxp 00018000 08:01 12193475   /usr/lib/libxcb.so.1.1.0
+8dcaf000-8dcb2000 ---p 00000000 00:00 0 
+8dcb2000-8dd00000 rwxp 00000000 00:00 0 
+8dd00000-8ddfc000 rwxp 00000000 00:00 0 
+8ddfc000-8de00000 ---p 00000000 00:00 0 
+8de00000-8deed000 rwxp 00000000 00:00 0 
+8deed000-8df00000 ---p 00000000 00:00 0 
+8df00000-8e000000 rwxp 00000000 00:00 0 
+8e000000-8e002000 r-xs 00000000 08:01 22815203   /var/cache/fontconfig/8039e78ad04dad2b193eec8c5f90bc4d-le32d4.cache-3
+8e002000-8e004000 r-xp 00000000 08:01 12192513   /usr/lib/libXau.so.6.0.0
+8e004000-8e005000 r-xp 00001000 08:01 12192513   /usr/lib/libXau.so.6.0.0
+8e005000-8e006000 rwxp 00002000 08:01 12192513   /usr/lib/libXau.so.6.0.0
+8e006000-8e012000 r-xp 00000000 08:01 12192534   /usr/lib/libXi.so.6.1.0
+8e012000-8e013000 r-xp 0000b000 08:01 12192534   /usr/lib/libXi.so.6.1.0
+8e013000-8e014000 rwxp 0000c000 08:01 12192534   /usr/lib/libXi.so.6.1.0
+8e014000-8e022000 r-xp 00000000 08:01 12192526   /usr/lib/libXext.so.6.4.0
+8e022000-8e023000 r-xp 0000d000 08:01 12192526   /usr/lib/libXext.so.6.4.0
+8e023000-8e024000 rwxp 0000e000 08:01 12192526   /usr/lib/libXext.so.6.4.0
+8e024000-8e028000 r-xp 00000000 08:01 12192554   /usr/lib/libXtst.so.6.1.0
+8e028000-8e029000 r-xp 00003000 08:01 12192554   /usr/lib/libXtst.so.6.1.0
+8e029000-8e02a000 rwxp 00004000 08:01 12192554   /usr/lib/libXtst.so.6.1.0
+8e02a000-8e02c000 r-xs 00000000 08:01 22815200   /var/cache/fontconfig/9123b38b1c36356a690c2f0bc4cbf728-le32d4.cache-3
+8e02c000-8e03a000 r-xs 00000000 08:01 22814526   /var/cache/fontconfig/865f88548240fee46819705c6468c165-le32d4.cache-3
+8e03a000-8e040000 r-xs 00000000 08:01 22814925   /var/cache/fontconfig/b83386915dae36184c7e3985fd26e4b1-le32d4.cache-3
+8e040000-8e046000 r-xs 0002a000 08:01 1577722    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/jdo2-api-2.3-eb.jar
+8e046000-8e08c000 r-xs 00291000 08:01 1574509    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/gwt-servlet.jar
+8e08c000-8e0e1000 r-xs 00bd6000 08:01 1577715    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/appengine-api-1.0-sdk-1.4.0.jar
+8e0e1000-8e0e5000 r-xs 00022000 08:01 1577721    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/datanucleus-jpa-1.1.5.jar
+8e0e5000-8e0e6000 r-xs 00001000 08:01 1577714    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/jsr107cache-1.1.jar
+8e0e6000-8e100000 r-xs 001be000 08:01 1577720    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/datanucleus-core-1.1.5.jar
+8e100000-8e1fe000 rwxp 00000000 00:00 0 
+8e1fe000-8e200000 ---p 00000000 00:00 0 
+8e200000-8e300000 rwxp 00000000 00:00 0 
+8e300000-8e3fd000 rwxp 00000000 00:00 0 
+8e3fd000-8e400000 ---p 00000000 00:00 0 
+8e400000-8e403000 r-xs 000cb000 08:01 17696985   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/localedata.jar
+8e403000-8e406000 r-xs 00027000 08:01 17696986   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/sunjce_provider.jar
+8e406000-8e409000 ---p 00000000 00:00 0 
+8e409000-8e457000 rwxp 00000000 00:00 0 
+8e457000-8e460000 r-xs 00059000 08:01 2622621    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/tools/jsp/repackaged-appengine-jakarta-standard-1.1.2.jar
+8e460000-8e46c000 r-xs 00155000 08:01 2622622    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/tools/jsp/repackaged-appengine-jasper-jdt-6.0.29.jar
+8e46c000-8e4b8000 r-xs 00976000 08:01 2622606    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/impl/appengine-local-runtime.jar
+8e4b8000-8e50d000 r-xs 00bd6000 08:01 2622605    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/impl/appengine-api.jar
+8e50d000-8e510000 ---p 00000000 00:00 0 
+8e510000-8e55e000 rwxp 00000000 00:00 0 
+8e55e000-8e561000 ---p 00000000 00:00 0 
+8e561000-8e5af000 rwxp 00000000 00:00 0 
+8e5af000-8e5b2000 ---p 00000000 00:00 0 
+8e5b2000-8e600000 rwxp 00000000 00:00 0 
+8e600000-8e6fa000 rwxp 00000000 00:00 0 
+8e6fa000-8e700000 ---p 00000000 00:00 0 
+8e700000-8e701000 r-xs 00000000 08:01 22815202   /var/cache/fontconfig/27f6fa40476fb33ad65cb210c133a216-le32d4.cache-3
+8e701000-8e703000 r-xs 00001000 08:01 17696987   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/dnsns.jar
+8e703000-8e707000 r-xs 00035000 08:01 17697184   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/sunpkcs11.jar
+8e707000-8e70e000 r-xp 00000000 08:01 17697054   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libnio.so
+8e70e000-8e70f000 rwxp 00006000 08:01 17697054   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libnio.so
+8e70f000-8e710000 r-xs 00003000 08:01 1577713    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/appengine-jsr107cache-1.4.0.jar
+8e710000-8e719000 r-xs 0016c000 08:01 1577712    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/appengine-api-labs-1.4.0.jar
+8e719000-8e71a000 r-xs 00003000 08:01 1577718    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar
+8e71a000-8e720000 r-xs 00045000 08:01 1577717    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/datanucleus-appengine-1.0.8.final.jar
+8e720000-8e729000 r-xs 0016c000 08:01 2622603    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/impl/appengine-api-labs.jar
+8e729000-8e72b000 r-xp 00000000 08:01 21495924   /lib/libnss_mdns4.so.2
+8e72b000-8e72c000 r-xp 00001000 08:01 21495924   /lib/libnss_mdns4.so.2
+8e72c000-8e72d000 rwxp 00002000 08:01 21495924   /lib/libnss_mdns4.so.2
+8e72d000-8e730000 ---p 00000000 00:00 0 
+8e730000-8e77e000 rwxp 00000000 00:00 0 
+8e77e000-8e781000 ---p 00000000 00:00 0 
+8e781000-8e7cf000 rwxp 00000000 00:00 0 
+8e7cf000-8e7d0000 ---p 00000000 00:00 0 
+8e7d0000-8e850000 rwxp 00000000 00:00 0 
+8e850000-8e853000 ---p 00000000 00:00 0 
+8e853000-8e8a1000 rwxp 00000000 00:00 0 
+8e8a1000-8e8a4000 ---p 00000000 00:00 0 
+8e8a4000-8e922000 rwxp 00000000 00:00 0 
+8e922000-8e925000 ---p 00000000 00:00 0 
+8e925000-8e9a3000 rwxp 00000000 00:00 0 
+8e9a3000-8eb0d000 r-xs 01914000 08:01 2626273    /home/flwidmer/apps/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.2.1.1_2.1.1.v201012170127/gwt-2.1.1/gwt-dev.jar
+8eb0d000-8ebaf000 r-xs 006f8000 08:01 2626279    /home/flwidmer/apps/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.2.1.1_2.1.1.v201012170127/gwt-2.1.1/gwt-user.jar
+8ebaf000-8ec00000 r-xs 0087c000 08:01 2622601    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/appengine-tools-api.jar
+8ec00000-8ecf0000 rwxp 00000000 00:00 0 
+8ecf0000-8ed00000 ---p 00000000 00:00 0 
+8ed00000-8ed01000 r-xs 00000000 08:01 22815201   /var/cache/fontconfig/98d684ad3abba16030bd60992dc9c5d7-le32d4.cache-3
+8ed01000-8ed02000 r-xs 00000000 08:01 22814420   /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le32d4.cache-3
+8ed02000-8ed12000 r-xp 00000000 08:01 21496481   /lib/libresolv-2.12.1.so
+8ed12000-8ed13000 r-xp 00010000 08:01 21496481   /lib/libresolv-2.12.1.so
+8ed13000-8ed14000 rwxp 00011000 08:01 21496481   /lib/libresolv-2.12.1.so
+8ed14000-8ed16000 rwxp 00000000 00:00 0 
+8ed16000-8ed1a000 r-xp 00000000 08:01 21496474   /lib/libnss_dns-2.12.1.so
+8ed1a000-8ed1b000 r-xp 00004000 08:01 21496474   /lib/libnss_dns-2.12.1.so
+8ed1b000-8ed1c000 rwxp 00005000 08:01 21496474   /lib/libnss_dns-2.12.1.so
+8ed1c000-8ed1e000 r-xp 00000000 08:01 21495925   /lib/libnss_mdns4_minimal.so.2
+8ed1e000-8ed1f000 r-xp 00001000 08:01 21495925   /lib/libnss_mdns4_minimal.so.2
+8ed1f000-8ed20000 rwxp 00002000 08:01 21495925   /lib/libnss_mdns4_minimal.so.2
+8ed20000-8ed23000 r-xs 0000a000 08:01 1577716    /home/flwidmer/development/address/ch.paso.address/war/WEB-INF/lib/geronimo-jpa_3.0_spec-1.1.1.jar
+8ed23000-8ed25000 r-xs 00012000 08:01 2622602    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/impl/agent/appengine-agentruntime.jar
+8ed25000-8ed27000 r-xs 00004000 08:01 2622620    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/tools/jsp/repackaged-appengine-jakarta-jstl-1.1.2.jar
+8ed27000-8ed36000 r-xs 00256000 08:01 2622604    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/impl/appengine-api-stubs.jar
+8ed36000-8ed4a000 r-xp 00000000 08:01 17697099   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libnet.so
+8ed4a000-8ed4b000 rwxp 00013000 08:01 17697099   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libnet.so
+8ed4b000-8ed51000 r-xs 0002a000 08:01 2622639    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/orm/jdo2-api-2.3-eb.jar
+8ed51000-8ed55000 r-xs 00022000 08:01 2622636    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/orm/datanucleus-jpa-1.1.5.jar
+8ed55000-8ed6f000 r-xs 001be000 08:01 2622635    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/orm/datanucleus-core-1.1.5.jar
+8ed6f000-8ed70000 r-xs 00003000 08:01 2622638    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/orm/geronimo-jta_1.1_spec-1.1.1.jar
+8ed70000-8ed76000 r-xs 00045000 08:01 2622634    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/orm/datanucleus-appengine-1.0.8.final.jar
+8ed76000-8ed79000 r-xs 0000a000 08:01 2622637    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar
+8ed79000-8edce000 r-xs 00bd6000 08:01 2622630    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/appengine-api-1.0-sdk-1.4.0.jar
+8edce000-8edcf000 r-xs 00001000 08:01 2622633    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/jsr107cache-1.1.jar
+8edcf000-8edd0000 r-xs 00003000 08:01 2622632    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/appengine-jsr107cache-1.4.0.jar
+8edd0000-8edd9000 r-xs 0016c000 08:01 2622631    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/user/appengine-api-labs-1.4.0.jar
+8edd9000-8eded000 r-xs 0012e000 08:01 2622612    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/jsp/repackaged-appengine-ant-1.7.1.jar
+8eded000-8edf0000 ---p 00000000 00:00 0 
+8edf0000-8ee3e000 rwxp 00000000 00:00 0 
+8ee3e000-8ee41000 ---p 00000000 00:00 0 
+8ee41000-8ee8f000 rwxp 00000000 00:00 0 
+8ee8f000-8ee92000 ---p 00000000 00:00 0 
+8ee92000-8eee0000 rwxp 00000000 00:00 0 
+8eee0000-8eee3000 ---p 00000000 00:00 0 
+8eee3000-8ef31000 rwxp 00000000 00:00 0 
+8ef31000-8ef34000 ---p 00000000 00:00 0 
+8ef34000-8ef82000 rwxp 00000000 00:00 0 
+8ef82000-8ef85000 ---p 00000000 00:00 0 
+8ef85000-8efd3000 rwxp 00000000 00:00 0 
+8efd3000-8efd4000 ---p 00000000 00:00 0 
+8efd4000-8f088000 rwxp 00000000 00:00 0 
+8f088000-8f220000 r-xs 03027000 08:01 17697124   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/rt.jar
+8f220000-8f221000 ---p 00000000 00:00 0 
+8f221000-8f2a1000 rwxp 00000000 00:00 0 
+8f2a1000-8f2a2000 ---p 00000000 00:00 0 
+8f2a2000-8f322000 rwxp 00000000 00:00 0 
+8f322000-8f323000 ---p 00000000 00:00 0 
+8f323000-8f3a3000 rwxp 00000000 00:00 0 
+8f3a3000-8f3a4000 ---p 00000000 00:00 0 
+8f3a4000-8f437000 rwxp 00000000 00:00 0 
+8f437000-8f438000 ---p 00000000 00:00 0 
+8f438000-8f444000 rwxp 00000000 00:00 0 
+8f444000-8f475000 rwxp 00000000 00:00 0 
+8f475000-8f4ef000 rwxp 00000000 00:00 0 
+8f4ef000-8f502000 rwxp 00000000 00:00 0 
+8f502000-8f503000 ---p 00000000 00:00 0 
+8f503000-8f50f000 rwxp 00000000 00:00 0 
+8f50f000-8f540000 rwxp 00000000 00:00 0 
+8f540000-8f5b9000 rwxp 00000000 00:00 0 
+8f5b9000-8f60f000 rwxp 00000000 00:00 0 
+8f60f000-91b30000 rwxp 00000000 00:00 0 
+91b30000-91c70000 ---p 00000000 00:00 0 
+91c70000-93610000 rwxp 00000000 00:00 0 
+93610000-99640000 rwxp 00000000 00:00 0 
+99640000-a8b70000 rwxp 00000000 00:00 0 
+a8b70000-b3610000 rwxp 00000000 00:00 0 
+b3610000-b3612000 r-xs 00046000 08:01 2622600    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/agent/appengine-agentimpl.jar
+b3612000-b3614000 r-xs 00007000 08:01 2622599    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/agent/appengine-agent.jar
+b3614000-b3616000 r-xs 00006000 08:01 2622609    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/el-api.jar
+b3616000-b3618000 r-xs 00011000 08:01 2622610    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/jsp-api.jar
+b3618000-b361b000 r-xs 0004b000 08:01 2622608    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/appengine-local-runtime-shared.jar
+b361b000-b361d000 r-xs 00019000 08:01 2622615    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/jsp/repackaged-appengine-jasper-el-6.0.29.jar
+b361d000-b361f000 r-xs 00002000 08:01 2622613    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/jsp/repackaged-appengine-ant-launcher-1.7.1.jar
+b361f000-b3638000 rwxp 00000000 00:00 0 
+b3638000-b36df000 rwxp 00000000 00:00 0 
+b36df000-b3cff000 rwxp 00000000 00:00 0 
+b3cff000-b66df000 rwxp 00000000 00:00 0 
+b66df000-b66ee000 r-xp 00000000 08:01 17697055   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libzip.so
+b66ee000-b66f0000 rwxp 0000e000 08:01 17697055   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libzip.so
+b66f0000-b66fa000 r-xp 00000000 08:01 21496475   /lib/libnss_files-2.12.1.so
+b66fa000-b66fb000 r-xp 00009000 08:01 21496475   /lib/libnss_files-2.12.1.so
+b66fb000-b66fc000 rwxp 0000a000 08:01 21496475   /lib/libnss_files-2.12.1.so
+b66fc000-b6705000 r-xp 00000000 08:01 21496477   /lib/libnss_nis-2.12.1.so
+b6705000-b6706000 r-xp 00008000 08:01 21496477   /lib/libnss_nis-2.12.1.so
+b6706000-b6707000 rwxp 00009000 08:01 21496477   /lib/libnss_nis-2.12.1.so
+b6707000-b6708000 r-xs 00006000 08:01 2622616    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/jsp/repackaged-appengine-tomcat-juli-6.0.29.jar
+b6708000-b670f000 r-xs 0007b000 08:01 2622614    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/jsp/repackaged-appengine-jasper-6.0.29.jar
+b670f000-b6711000 r-xs 00014000 08:01 2622617    /home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/shared/servlet-api.jar
+b6711000-b6714000 r-xp 00000000 08:01 17697096   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libdt_socket.so
+b6714000-b6715000 rwxp 00003000 08:01 17697096   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libdt_socket.so
+b6715000-b671d000 rwxs 00000000 08:01 7471161    /tmp/hsperfdata_flwidmer/2246
+b671d000-b691d000 r-xp 00000000 08:01 12193575   /usr/lib/locale/locale-archive
+b691d000-b6957000 r-xp 00000000 08:01 17697097   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libjdwp.so
+b6957000-b6958000 rwxp 00039000 08:01 17697097   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libjdwp.so
+b6958000-b696b000 r-xp 00000000 08:01 21496472   /lib/libnsl-2.12.1.so
+b696b000-b696c000 r-xp 00012000 08:01 21496472   /lib/libnsl-2.12.1.so
+b696c000-b696d000 rwxp 00013000 08:01 21496472   /lib/libnsl-2.12.1.so
+b696d000-b696f000 rwxp 00000000 00:00 0 
+b696f000-b6975000 r-xp 00000000 08:01 21496473   /lib/libnss_compat-2.12.1.so
+b6975000-b6976000 r-xp 00006000 08:01 21496473   /lib/libnss_compat-2.12.1.so
+b6976000-b6977000 rwxp 00007000 08:01 21496473   /lib/libnss_compat-2.12.1.so
+b6977000-b6980000 r-xp 00000000 08:01 17697093   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libinstrument.so
+b6980000-b6981000 rwxp 00008000 08:01 17697093   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libinstrument.so
+b6981000-b6984000 r-xp 00000000 08:01 17697049   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libnpt.so
+b6984000-b6985000 rwxp 00002000 08:01 17697049   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libnpt.so
+b6985000-b69a8000 r-xp 00000000 08:01 17697050   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libjava.so
+b69a8000-b69aa000 rwxp 00023000 08:01 17697050   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libjava.so
+b69aa000-b69b1000 r-xp 00000000 08:01 21496482   /lib/librt-2.12.1.so
+b69b1000-b69b2000 r-xp 00006000 08:01 21496482   /lib/librt-2.12.1.so
+b69b2000-b69b3000 rwxp 00007000 08:01 21496482   /lib/librt-2.12.1.so
+b69b3000-b69b6000 ---p 00000000 00:00 0 
+b69b6000-b6a04000 rwxp 00000000 00:00 0 
+b6a04000-b6a28000 r-xp 00000000 08:01 21496470   /lib/libm-2.12.1.so
+b6a28000-b6a29000 r-xp 00023000 08:01 21496470   /lib/libm-2.12.1.so
+b6a29000-b6a2a000 rwxp 00024000 08:01 21496470   /lib/libm-2.12.1.so
+b6a2a000-b71b7000 r-xp 00000000 08:01 17697070   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/server/libjvm.so
+b71b7000-b720a000 rwxp 0078d000 08:01 17697070   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/server/libjvm.so
+b720a000-b7629000 rwxp 00000000 00:00 0 
+b7629000-b7780000 r-xp 00000000 08:01 21496466   /lib/libc-2.12.1.so
+b7780000-b7782000 r-xp 00157000 08:01 21496466   /lib/libc-2.12.1.so
+b7782000-b7783000 rwxp 00159000 08:01 21496466   /lib/libc-2.12.1.so
+b7783000-b7786000 rwxp 00000000 00:00 0 
+b7786000-b7788000 r-xp 00000000 08:01 21496469   /lib/libdl-2.12.1.so
+b7788000-b7789000 r-xp 00001000 08:01 21496469   /lib/libdl-2.12.1.so
+b7789000-b778a000 rwxp 00002000 08:01 21496469   /lib/libdl-2.12.1.so
+b778a000-b7791000 r-xp 00000000 08:01 17697059   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/jli/libjli.so
+b7791000-b7793000 rwxp 00006000 08:01 17697059   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/jli/libjli.so
+b7793000-b7794000 rwxp 00000000 00:00 0 
+b7794000-b77a9000 r-xp 00000000 08:01 21496480   /lib/libpthread-2.12.1.so
+b77a9000-b77aa000 ---p 00015000 08:01 21496480   /lib/libpthread-2.12.1.so
+b77aa000-b77ab000 r-xp 00015000 08:01 21496480   /lib/libpthread-2.12.1.so
+b77ab000-b77ac000 rwxp 00016000 08:01 21496480   /lib/libpthread-2.12.1.so
+b77ac000-b77ae000 rwxp 00000000 00:00 0 
+b77ae000-b77af000 r-xp 002a1000 08:01 12193575   /usr/lib/locale/locale-archive
+b77af000-b77b5000 r-xp 00000000 08:01 17697073   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/native_threads/libhpi.so
+b77b5000-b77b6000 rwxp 00006000 08:01 17697073   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/native_threads/libhpi.so
+b77b6000-b77b7000 rwxp 00000000 00:00 0 
+b77b7000-b77b8000 r-xp 00000000 00:00 0 
+b77b8000-b77c3000 r-xp 00000000 08:01 17697084   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libverify.so
+b77c3000-b77c4000 rwxp 0000b000 08:01 17697084   /usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/libverify.so
+b77c4000-b77c6000 rwxp 00000000 00:00 0 
+b77c6000-b77c7000 r-xp 00000000 00:00 0          [vdso]
+b77c7000-b77e3000 r-xp 00000000 08:01 21496457   /lib/ld-2.12.1.so
+b77e3000-b77e4000 r-xp 0001b000 08:01 21496457   /lib/ld-2.12.1.so
+b77e4000-b77e5000 rwxp 0001c000 08:01 21496457   /lib/ld-2.12.1.so
+bfccc000-bfcee000 rwxp 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:41815 -javaagent:/home/flwidmer/apps/eclipse/plugins/com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502/appengine-java-sdk-1.4.0/lib/agent/appengine-agent.jar -Xmx512m -Dfile.encoding=UTF-8 
+java_command: com.google.gwt.dev.DevMode -server com.google.appengine.tools.development.gwt.AppEngineLauncher -remoteUI 60056:173909861278 -startupUrl Ch_paso_address.html -logLevel INFO -codeServerPort 9997 -port 8888 -war /home/flwidmer/development/address/ch.paso.address/war ch.paso.address.Ch_paso_address
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/home/flwidmer/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+USERNAME=flwidmer
+LD_LIBRARY_PATH=/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/server:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/../lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/client:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x708f80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x708f80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x5c4100], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x5c4100], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x5c4100], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x5c4100], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x5c70e0], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x5c6cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x5c6cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x5c6cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x5c6cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:squeeze/sid
+
+uname:Linux 2.6.35-28-generic-pae #50-Ubuntu SMP Fri Mar 18 20:43:15 UTC 2011 i686
+libc:glibc 2.12.1 NPTL 2.12.1 
+rlimit: STACK 8192k, CORE 0k, NPROC infinity, NOFILE 1024, AS infinity
+load average:1.05 1.29 0.80
+
+/proc/meminfo:
+MemTotal:        3910460 kB
+MemFree:         1921404 kB
+Buffers:          101796 kB
+Cached:           753692 kB
+SwapCached:            0 kB
+Active:          1164924 kB
+Inactive:         701144 kB
+Active(anon):    1011132 kB
+Inactive(anon):    54248 kB
+Active(file):     153792 kB
+Inactive(file):   646896 kB
+Unevictable:          64 kB
+Mlocked:              64 kB
+HighTotal:       3072068 kB
+HighFree:        1288824 kB
+LowTotal:         838392 kB
+LowFree:          632580 kB
+SwapTotal:      12285948 kB
+SwapFree:       12285948 kB
+Dirty:                84 kB
+Writeback:             0 kB
+AnonPages:       1010724 kB
+Mapped:           130592 kB
+Shmem:             54804 kB
+Slab:              65744 kB
+SReclaimable:      46364 kB
+SUnreclaim:        19380 kB
+KernelStack:        3720 kB
+PageTables:         8060 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    14241176 kB
+Committed_AS:    2218132 kB
+VmallocTotal:     122880 kB
+VmallocUsed:       38200 kB
+VmallocChunk:      74964 kB
+HardwareCorrupted:     0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       10232 kB
+DirectMap2M:      903168 kB
+
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 37 stepping 5, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 3910460k(1921404k free), swap 12285948k(12285948k free)
+
+vm_info: Java HotSpot(TM) Server VM (19.1-b02) for linux-x86 JRE (1.6.0_24-b07), built on Feb  2 2011 16:51:52 by "java_re" with gcc 3.2.1-7a (J2SE release)
+
+time: Wed Apr 20 09:08:42 2011
+elapsed time: 337 seconds
+

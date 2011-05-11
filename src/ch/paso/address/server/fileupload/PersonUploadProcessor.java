@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 import ch.paso.address.server.services.PersonService;
 import ch.paso.address.shared.entities.PersonEntity;
@@ -15,11 +16,13 @@ import ch.paso.address.shared.entities.PersonEntity;
 public class PersonUploadProcessor extends CSVFileProcessor {
 
 	public void execCreateResponse(ServletResponse resp) throws IOException {
+		resp.setContentType("text/html");
 		PrintWriter writer = resp.getWriter();
 		String errorLog = getErrorLog();
-		if(errorLog.isEmpty()){
+		if (errorLog.isEmpty()) {
+			// TODO more verbose
 			writer.append("OK");
-		}else{
+		} else {
 			writer.append(errorLog);
 		}
 	}
@@ -69,7 +72,8 @@ public class PersonUploadProcessor extends CSVFileProcessor {
 			try {
 				p.setBirthDate(format.parse(iterator.next()));
 			} catch (ParseException e) {
-				logError("could not parse birthdate");
+				logError("could not parse birthdate for " + p.getLastName()
+						+ ", " + p.getFirstName() + "\n");
 			}
 		}
 		// Entry
@@ -78,7 +82,8 @@ public class PersonUploadProcessor extends CSVFileProcessor {
 			try {
 				p.setEntry(format.parse(iterator.next()));
 			} catch (ParseException e) {
-				logError("could not parse entrydate");
+				logError("could not parse entrydate " + p.getLastName() + ", "
+						+ p.getFirstName() + "\n");
 			}
 		}
 		// Stufe
