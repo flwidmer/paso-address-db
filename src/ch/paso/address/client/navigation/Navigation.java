@@ -1,15 +1,22 @@
 package ch.paso.address.client.navigation;
 
+import org.apache.catalina.HttpRequest;
+
+import ch.paso.address.client.Ch_paso_address;
 import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.tables.AdminPage;
 import ch.paso.address.client.tables.ImportPage;
 import ch.paso.address.client.tables.PersonTablePage;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
@@ -37,9 +44,11 @@ public class Navigation extends Composite {
 		getPanel().add(new ImportLink(this));
 		getPanel().add(new AdminLink(this));
 		getPanel().add(m_loginLabel);
+		getPanel().add(new LogoutLink());
+
 	}
 
-	public void setLogin(){
+	public void setLogin() {
 		RequestBuilder rb = new RequestBuilder(RequestBuilder.POST,
 				"/authentication");
 		rb.setHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -133,6 +142,21 @@ public class Navigation extends Composite {
 		@Override
 		protected Widget getConfiguredTarget() {
 			return new AdminPage();
+		}
+
+	}
+
+	public class LogoutLink extends Anchor {
+		public LogoutLink() {
+			setText("Logout");
+			setStyleName("NavLink");
+			addClickHandler(new ClickHandler() {
+
+				@Override
+				public void onClick(ClickEvent event) {
+					Ch_paso_address.logout();
+				}
+			});
 		}
 
 	}

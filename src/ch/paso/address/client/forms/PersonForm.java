@@ -364,7 +364,7 @@ public class PersonForm extends AbstractForm {
 		getActiveField().setValue(result.isActive());
 		getStreetField().setValue(result.getStreet());
 		getPlzField().setValue(result.getPlz());
-		getTownField().setValue(result.getPhone());
+		getTownField().setValue(result.getTown());
 		getPhoneField().setValue(result.getPhone());
 		getCellField().setValue(result.getCell());
 		getEmailField().setValue(result.getEmail());

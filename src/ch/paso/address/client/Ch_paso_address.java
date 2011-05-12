@@ -12,6 +12,12 @@ import ch.paso.address.shared.entities.StufeCodeType;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
@@ -28,6 +34,7 @@ public class Ch_paso_address implements EntryPoint {
 	private static String password = "";
 
 	private static Navigation S_navigation;
+	private static RootPanel m_rootPanel;
 
 	public void onModuleLoad() {
 		ICodeServiceAsync svc = GWT.create(ICodeService.class);
@@ -68,6 +75,7 @@ public class Ch_paso_address implements EntryPoint {
 
 	private void display() {
 		RootPanel rootPanel = RootPanel.get("display");
+		m_rootPanel = rootPanel;
 		ScrollPanel sp = new ScrollPanel();
 		rootPanel.add(sp);
 		Navigation navigation = new Navigation(sp);
@@ -98,5 +106,32 @@ public class Ch_paso_address implements EntryPoint {
 
 	public static String getPassword() {
 		return password;
+	}
+
+	public static void logout() {
+		RequestBuilder rb = new RequestBuilder(RequestBuilder.GET,
+				"/authentication?action=logout");
+		rb.setCallback(new RequestCallback() {
+
+			@Override
+			public void onResponseReceived(Request request, Response response) {
+				Window.alert("Log out erfolgreich");
+				m_rootPanel.clear();
+				getNavigation().getPanel().clear();
+			}
+
+			@Override
+			public void onError(Request request, Throwable exception) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		try {
+			rb.send();
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

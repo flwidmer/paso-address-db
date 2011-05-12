@@ -37,7 +37,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>authentication</servlet-name>
-		<url-pattern>authentication</url-pattern>
+		<url-pattern>/authentication</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PersonService</servlet-name>

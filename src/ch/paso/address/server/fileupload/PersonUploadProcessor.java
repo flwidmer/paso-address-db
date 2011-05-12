@@ -29,6 +29,8 @@ public class PersonUploadProcessor extends CSVFileProcessor {
 
 	private void parseLine(List<String> line) {
 		PersonEntity p = new PersonEntity();
+		//set active
+		p.setActive(true);
 		Iterator<String> iterator = line.iterator();
 		// Vorname
 		if (iterator.hasNext()) {
