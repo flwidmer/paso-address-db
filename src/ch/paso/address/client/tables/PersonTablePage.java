@@ -10,6 +10,7 @@ import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
 import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractDateColumn;
+import ch.paso.address.client.tables.columns.AbstractButtonColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.PersonEntity;
 
@@ -273,41 +274,30 @@ public class PersonTablePage extends Composite {
 
 		}
 
-		public class DeleteButtonColumn extends
-				AbstractColumn<PersonEntity, String> {
+	}
 
-			public DeleteButtonColumn() {
-				super(new ButtonCell());
-				setFieldUpdater(new FieldUpdater<PersonEntity, String>() {
+	public class DeleteButtonColumn extends AbstractButtonColumn<PersonEntity> {
 
-					@Override
-					public void update(final int index, PersonEntity object,
-							String value) {
+		@Override
+		protected void execOnClick(int index, PersonEntity object, String value) {
+			IPersonServiceAsync svc = GWT.create(IPersonService.class);
+			svc.deletePerson(object.getId(), new AsyncCallback<Void>() {
+				@Override
+				public void onFailure(Throwable caught) {
+					ErrorHandler.handleError("Error during deleting", caught);
+				}
 
-						IPersonServiceAsync svc = GWT
-								.create(IPersonService.class);
-						svc.deletePerson(object.getId(),
-								new AsyncCallback<Void>() {
-									@Override
-									public void onFailure(Throwable caught) {
-										ErrorHandler.handleError("Error during deleting", caught);
-									}
+				@Override
+				public void onSuccess(Void result) {
+					reload();
+				}
 
-									@Override
-									public void onSuccess(Void result) {
-										reload();
-									}
-								});
-					}
-				});
-			}
-
-			@Override
-			public String getValue(PersonEntity object) {
-				return "Löschen";
-			}
+			});
 
 		}
-
+		@Override
+		protected String getConfiguredLabel() {
+			return "Löschen";
+		}
 	}
 }

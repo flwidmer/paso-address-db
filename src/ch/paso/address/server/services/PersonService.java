@@ -67,4 +67,10 @@ public class PersonService extends RemoteServiceServlet implements
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	@Override
+	protected void onBeforeRequestDeserialized(String serializedRequest) {
+		// TODO Auto-generated method stub
+		super.onBeforeRequestDeserialized(serializedRequest);
+	}
 }

@@ -6,22 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class StufeCodeType implements ICodeType {
+public class PermissionCodeType implements ICodeType {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID1 = 1337327221346875208L;
+	private static final long serialVersionUID = -2176828838897561L;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ch.paso.address.shared.entities.ICode#getCodeTypeName()
-	 */
 	@Override
 	public String getCodeTypeName() {
-		return "Stufe";
+		return "Berechtigung";
 	}
 
-	private static final long serialVersionUID = -7251687021370850137L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long m_id;

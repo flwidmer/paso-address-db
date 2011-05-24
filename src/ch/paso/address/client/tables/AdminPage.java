@@ -1,6 +1,7 @@
 package ch.paso.address.client.tables;
 
 import ch.paso.address.client.Ch_paso_address;
+import ch.paso.address.client.forms.UserForm;
 import ch.paso.address.client.navigation.AbstractNavigationLink;
 import ch.paso.address.client.navigation.Navigation;
 
@@ -15,11 +16,14 @@ public class AdminPage extends Composite {
 		setPanel(new VerticalPanel());
 		initWidget(getPanel());
 	}
-	
+
 	@Override
 	protected void onLoad() {
-		getPanel().add(new FunctionAdminLink(Ch_paso_address.getNavigation()));
-		getPanel().add(new StufeAdminLink(Ch_paso_address.getNavigation()));
+		Navigation navigation = Ch_paso_address.getNavigation();
+		getPanel().add(new FunctionAdminLink(navigation));
+		getPanel().add(new StufeAdminLink(navigation));
+		getPanel().add(new PermissionAdminLink(navigation));
+		getPanel().add(new UserAdminLink(navigation));
 	}
 
 	public void setPanel(VerticalPanel panel) {
@@ -29,8 +33,8 @@ public class AdminPage extends Composite {
 	public VerticalPanel getPanel() {
 		return m_panel;
 	}
-	
-	public class FunctionAdminLink extends AbstractNavigationLink{
+
+	public class FunctionAdminLink extends AbstractNavigationLink {
 
 		public FunctionAdminLink(Navigation n) {
 			super(n);
@@ -45,22 +49,61 @@ public class AdminPage extends Composite {
 		protected Widget getConfiguredTarget() {
 			return new FunctionAdminPage();
 		}
-		
+
 	}
-	
-	public class StufeAdminLink extends AbstractNavigationLink{
+
+	public class StufeAdminLink extends AbstractNavigationLink {
 
 		public StufeAdminLink(Navigation n) {
 			super(n);
 		}
+
 		@Override
 		protected String getConfiguredText() {
 			return "Stufen";
 		}
-		
+
 		@Override
 		protected Widget getConfiguredTarget() {
 			return new StufeAdminPage();
 		}
+	}
+
+	public class PermissionAdminLink extends AbstractNavigationLink {
+
+		public PermissionAdminLink(Navigation n) {
+			super(n);
+		}
+
+		@Override
+		protected String getConfiguredText() {
+			return "Berechtigungen";
+		}
+
+		@Override
+		protected Widget getConfiguredTarget() {
+			return new PermissionAdminPage();
+		}
+
+	}
+
+	public class UserAdminLink extends AbstractNavigationLink {
+
+		public UserAdminLink(Navigation n) {
+			super(n);
+		}
+
+		@Override
+		protected String getConfiguredText() {
+			return "Benutzer";
+		}
+
+		@Override
+		protected Widget getConfiguredTarget() {
+			UserForm userForm = new UserForm();
+			userForm.startNew();
+			return new PersonTablePage();
+		}
+
 	}
 }
