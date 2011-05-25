@@ -68,10 +68,12 @@ public abstract class AbstractCodeAdminPage extends Composite {
 		// TODO delete button (admin only)
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void reload() {
 		ICodeServiceAsync svc = GWT.create(ICodeService.class);
 		svc.loadCodes(getConfiguredPrototype(), new AsyncCallback<List>() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onSuccess(List result) {
 				getTheTable().setRowData(result);
@@ -113,10 +115,9 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 	public class CodeTable extends AbstractTable<ICodeType> {
 
-		@SuppressWarnings("rawtypes")
 		@Override
-		protected List<AbstractColumn> getConfiguredColumns() {
-			ArrayList<AbstractColumn> result = new ArrayList<AbstractColumn>();
+		protected List<AbstractColumn<ICodeType, ?>> getConfiguredColumns() {
+			ArrayList<AbstractColumn<ICodeType, ?>> result = new ArrayList<AbstractColumn<ICodeType, ?>>();
 			result.add(new ValueColumn());
 			result.add(new ActiveColumn());
 			result.add(new EditButtonColumn());

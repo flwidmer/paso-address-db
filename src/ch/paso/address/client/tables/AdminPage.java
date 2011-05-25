@@ -100,9 +100,7 @@ public class AdminPage extends Composite {
 
 		@Override
 		protected Widget getConfiguredTarget() {
-			UserForm userForm = new UserForm();
-			userForm.startNew();
-			return new PersonTablePage();
+			return new UserTablePage();
 		}
 
 	}

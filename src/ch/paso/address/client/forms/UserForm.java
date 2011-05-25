@@ -136,10 +136,9 @@ public class UserForm extends AbstractForm {
 
 			public class PermissionTable extends AbstractTable<Permission> {
 
-				@SuppressWarnings("rawtypes")
 				@Override
-				protected List<AbstractColumn> getConfiguredColumns() {
-					ArrayList<AbstractColumn> result = new ArrayList<AbstractColumn>();
+				protected List<AbstractColumn<Permission, ?>> getConfiguredColumns() {
+					ArrayList<AbstractColumn<Permission, ?>> result = new ArrayList<AbstractColumn<Permission, ?>>();
 					result.add(new NameColumn());
 					result.add(new DeleteColumn());
 					return result;

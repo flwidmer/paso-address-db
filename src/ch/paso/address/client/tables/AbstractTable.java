@@ -14,7 +14,7 @@ public abstract class AbstractTable<T> extends CellTable<T> {
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void onLoad() {
-		List<AbstractColumn> col = getConfiguredColumns();
+		List<AbstractColumn<T,?>> col = getConfiguredColumns();
 		for (AbstractColumn column : col) {
 			addColumn(column, column.getConfiguredTitle());
 			if (column.getConfiguredSortable()) {
@@ -23,8 +23,7 @@ public abstract class AbstractTable<T> extends CellTable<T> {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	protected abstract List<AbstractColumn> getConfiguredColumns();
+	protected abstract List<AbstractColumn<T,?>> getConfiguredColumns();
 
 	public boolean contains(T o){
 		return getRowsInternal().contains(o);

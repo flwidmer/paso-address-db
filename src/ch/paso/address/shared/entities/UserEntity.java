@@ -9,18 +9,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
+
+import org.apache.commons.io.filefilter.FalseFileFilter;
 
 import ch.paso.address.shared.permission.Permission;
 
 @Entity
 public class UserEntity implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long m_id;
 	@Basic
+	// TODO unique constraint
 	private String m_userName;
-	@Basic
+	@Basic(optional = false)
 	private String m_password;
 	@Basic
 	private List<Permission> m_permissions;

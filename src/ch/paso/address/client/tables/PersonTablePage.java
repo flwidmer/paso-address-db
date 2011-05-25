@@ -8,65 +8,45 @@ import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.PersonForm;
 import ch.paso.address.client.services.IPersonService;
 import ch.paso.address.client.services.IPersonServiceAsync;
+import ch.paso.address.client.tables.columns.AbstractButtonColumn;
 import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractDateColumn;
-import ch.paso.address.client.tables.columns.AbstractButtonColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.PersonEntity;
 
-import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class PersonTablePage extends Composite {
-
-	private CellTable<PersonEntity> m_theTable;
+public class PersonTablePage extends AbstractTablePage<PersonEntity> {
 
 	public PersonTablePage() {
-		m_theTable = new PersonTable();
-		VerticalPanel hp = new VerticalPanel();
-		Button newButton = new Button();
-		newButton.setText("Neu");
-		newButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				PersonForm form = new PersonForm();
-				form.addCloseHandler(new CloseHandler<PopupPanel>() {
-					@Override
-					public void onClose(CloseEvent<PopupPanel> event) {
-						reload();
-					}
-				});
-				form.startNew();
-			}
-		});
-		hp.add(m_theTable);
-		hp.add(newButton);
-		initWidget(hp);
+		super();
 	}
 
 	@Override
-	protected void onLoad() {
-		reload();
+	protected void execNewClick() {
+		PersonForm form = new PersonForm();
+		form.addCloseHandler(new CloseHandler<PopupPanel>() {
+			@Override
+			public void onClose(CloseEvent<PopupPanel> event) {
+				reload();
+			}
+		});
+		form.startNew();
 	}
 
-	public void reload() {
+	@Override
+	protected void reload() {
 		IPersonServiceAsync svc = GWT.create(IPersonService.class);
 		svc.getAllPersons(new AsyncCallback<List<PersonEntity>>() {
 
 			@Override
 			public void onSuccess(List<PersonEntity> result) {
-				m_theTable.setRowData(result);
+				getTheTable().setRowData(result);
 			}
 
 			@Override
@@ -76,11 +56,16 @@ public class PersonTablePage extends Composite {
 		});
 	}
 
+	@Override
+	protected boolean getConfiguredNewButtonVisible() {
+		return true;
+	}
+
 	public class PersonTable extends AbstractTable<PersonEntity> {
 
 		@Override
-		protected List<AbstractColumn> getConfiguredColumns() {
-			ArrayList<AbstractColumn> cols = new ArrayList<AbstractColumn>();
+		protected List<AbstractColumn<PersonEntity, ?>> getConfiguredColumns() {
+			ArrayList<AbstractColumn<PersonEntity, ?>> cols = new ArrayList<AbstractColumn<PersonEntity, ?>>();
 			cols.add(new FirstNameColumn());
 			cols.add(new LastNameColumn());
 			cols.add(new VulgoColumn());
@@ -244,32 +229,25 @@ public class PersonTablePage extends Composite {
 		}
 
 		public class EditButtonColumn extends
-				AbstractColumn<PersonEntity, String> {
-
-			public EditButtonColumn() {
-				super(new ButtonCell());
-				setFieldUpdater(new FieldUpdater<PersonEntity, String>() {
-
-					@Override
-					public void update(int index, PersonEntity object,
-							String value) {
-						PersonForm form = new PersonForm();
-						form.addCloseHandler(new CloseHandler<PopupPanel>() {
-							@Override
-							public void onClose(CloseEvent<PopupPanel> event) {
-								reload();
-							}
-						});
-						form.setId(object.getId());
-						form.startModify();
-
-					}
-				});
-			}
+				AbstractButtonColumn<PersonEntity> {
 
 			@Override
 			public String getValue(PersonEntity object) {
 				return "Bearbeiten";
+			}
+
+			@Override
+			protected void execOnClick(int index, PersonEntity object,
+					String value) {
+				PersonForm form = new PersonForm();
+				form.addCloseHandler(new CloseHandler<PopupPanel>() {
+					@Override
+					public void onClose(CloseEvent<PopupPanel> event) {
+						reload();
+					}
+				});
+				form.setId(object.getId());
+				form.startModify();
 			}
 
 		}
@@ -295,9 +273,15 @@ public class PersonTablePage extends Composite {
 			});
 
 		}
+
 		@Override
 		protected String getConfiguredLabel() {
 			return "Löschen";
 		}
+	}
+
+	@Override
+	protected CellTable<PersonEntity> getConfiguredTable() {
+		return new PersonTable();
 	}
 }
