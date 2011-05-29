@@ -122,15 +122,13 @@ public class Ch_paso_address implements EntryPoint {
 
 			@Override
 			public void onError(Request request, Throwable exception) {
-				// TODO Auto-generated method stub
-
+				ErrorHandler.handleError(exception);
 			}
 		});
 		try {
 			rb.send();
 		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorHandler.handleError(e);
 		}
 
 	}

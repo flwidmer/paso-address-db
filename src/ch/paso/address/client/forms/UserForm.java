@@ -136,13 +136,6 @@ public class UserForm extends AbstractForm {
 
 			public class PermissionTable extends AbstractTable<Permission> {
 
-				@Override
-				protected List<AbstractColumn<Permission, ?>> getConfiguredColumns() {
-					ArrayList<AbstractColumn<Permission, ?>> result = new ArrayList<AbstractColumn<Permission, ?>>();
-					result.add(new NameColumn());
-					result.add(new DeleteColumn());
-					return result;
-				}
 
 				public class NameColumn extends
 						AbstractStringColumn<Permission> {
@@ -167,6 +160,14 @@ public class UserForm extends AbstractForm {
 					protected String getConfiguredLabel() {
 						return "Entfernen";
 					}
+				}
+
+				@Override
+				protected List<AbstractColumn<Permission, ?>> getConfiguredColumns() {
+					ArrayList<AbstractColumn<Permission, ?>> result = new ArrayList<AbstractColumn<Permission, ?>>();
+					result.add(new NameColumn());
+					result.add(new DeleteColumn());
+					return result;
 				}
 
 			}

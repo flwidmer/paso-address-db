@@ -8,7 +8,7 @@ import ch.paso.address.shared.permission.Permission;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("/auth/permission")
+@RemoteServiceRelativePath("auth/permission")
 public interface IPermissionService extends RemoteService {
 
 	List<Permission> loadPermissions();

@@ -29,9 +29,8 @@ public class AuthenticationFilter implements Filter {
 		if (attribute != null) {
 			chain.doFilter(request, response);
 		} else {
-			// TODO send http error
+			//send http error
 			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "please authenticate");
-			//response.getWriter().write("please authenticate");
 		}
 	}
 

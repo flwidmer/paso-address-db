@@ -58,7 +58,6 @@ public abstract class AbstractCodeAdminPage extends Composite {
 						reload();
 					}
 				});
-				// TODO
 				form.setFormData(getPrototype());
 				form.startNew();
 			}

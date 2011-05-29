@@ -3,6 +3,7 @@ package ch.paso.address.shared.permission;
 import java.io.Serializable;
 
 public class Permission implements Comparable<Permission>,Serializable {
+	private static final long serialVersionUID = -2218294889469266059L;
 	private String m_name;
 	private int m_level;
 
