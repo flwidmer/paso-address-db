@@ -173,7 +173,7 @@ public class UserForm extends AbstractForm {
 			}
 
 			public void fillPermissionTable(List<Permission> values) {
-				getTheTable().setRowData(values);
+				getTheTable().addRows(values);
 			}
 
 			public List<Permission> getPermissionTableList() {

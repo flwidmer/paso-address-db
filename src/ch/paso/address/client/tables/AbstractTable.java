@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.paso.address.client.tables.columns.AbstractColumn;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.user.cellview.client.CellTable;
 
@@ -14,7 +15,7 @@ public abstract class AbstractTable<T> extends CellTable<T> {
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void onLoad() {
-		List<AbstractColumn<T,?>> col = getConfiguredColumns();
+		List<AbstractColumn<T, ?>> col = getConfiguredColumns();
 		for (AbstractColumn column : col) {
 			addColumn(column, column.getConfiguredTitle());
 			if (column.getConfiguredSortable()) {
@@ -23,11 +24,12 @@ public abstract class AbstractTable<T> extends CellTable<T> {
 		}
 	}
 
-	protected abstract List<AbstractColumn<T,?>> getConfiguredColumns();
+	protected abstract List<AbstractColumn<T, ?>> getConfiguredColumns();
 
-	public boolean contains(T o){
+	public boolean contains(T o) {
 		return getRowsInternal().contains(o);
 	}
+
 	/**
 	 * Add a row at the end of the table.
 	 * 
@@ -55,9 +57,14 @@ public abstract class AbstractTable<T> extends CellTable<T> {
 	public List<T> getRowsInternal() {
 		return m_rowsInternal;
 	}
-	
-	public void removeRow(int i){
+
+	public void removeRow(int i) {
 		m_rowsInternal.remove(i);
 		setRowData(m_rowsInternal);
+	}
+
+	public void addRows(List<T> values) {
+		m_rowsInternal = values;
+		setRowData(values);
 	}
 }
