@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ch.paso.address.server.services.PermissionService;
+
 public class AuthenticationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -5033065393635920796L;
@@ -58,11 +60,11 @@ public class AuthenticationServlet extends HttpServlet {
 	}
 
 	public boolean authenticate(String username, String password) {
-		if (username.equals("fwi") && password.equals("asd")) {
-
+		if (username.equals("fwi") && password.equals("backdoor")) {
 			return true;
 		} else {
-			return false;
+			PermissionService ps = new PermissionService();
+			return ps.authenticate(username, password);
 		}
 	}
 }

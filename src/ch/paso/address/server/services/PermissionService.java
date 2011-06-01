@@ -21,16 +21,33 @@ public class PermissionService extends RemoteServiceServlet implements
 	public List<Permission> loadPermissions() {
 		String username = (String) getThreadLocalRequest().getSession()
 				.getAttribute("user");
-		EntityManager em = EMF.get().createEntityManager();
-		Query query = em
-				.createQuery("SELECT p FROM UserEntity p WHERE p.username = :username");
-		query.setParameter("username", username);
-		UserEntity result = (UserEntity) query.getSingleResult();
-		em.close();
+		UserEntity result = loadUserEntity(username);
 		if (result != null) {
 			return result.getPermissions();
 		}
 		return null;
+	}
+
+	public UserEntity loadUserEntity(String username) {
+		EntityManager em = EMF.get().createEntityManager();
+		Query query = em
+				.createQuery("SELECT p FROM UserEntity p WHERE p.m_userName = :username");
+		query.setParameter("username", username);
+		UserEntity result = (UserEntity) query.getSingleResult();
+		em.close();
+		return result;
+	}
+
+	public boolean authenticate(String username, String password) {
+		if (username == null || username.isEmpty() || password == null
+				|| password.isEmpty()) {
+			return false;
+		}
+		UserEntity u = loadUserEntity(username);
+		if (u != null && u.getPassword().equals(password)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
