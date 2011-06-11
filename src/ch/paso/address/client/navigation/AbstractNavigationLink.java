@@ -1,6 +1,9 @@
 package ch.paso.address.client.navigation;
 
 
+import ch.paso.address.client.Ch_paso_address;
+import ch.paso.address.shared.permission.Permission;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Anchor;
@@ -25,9 +28,16 @@ public abstract class AbstractNavigationLink extends Anchor{
 				m_navigation.switchTo(getConfiguredTarget());
 			}
 		});
+		setVisible(Ch_paso_address.checkPermission(getConfiguredPermission()));
 	}
 	
 	protected abstract String getConfiguredText();
 	
 	protected abstract Widget getConfiguredTarget();
+	
+	protected Permission getConfiguredPermission(){
+		return null;
+	}
+	
+	
 }

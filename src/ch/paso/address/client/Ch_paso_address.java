@@ -1,5 +1,6 @@
 package ch.paso.address.client;
 
+import java.util.HashMap;
 import java.util.List;
 
 import ch.paso.address.client.auth.ClientAuthenticator;
@@ -7,8 +8,11 @@ import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.navigation.Navigation;
 import ch.paso.address.client.services.ICodeService;
 import ch.paso.address.client.services.ICodeServiceAsync;
+import ch.paso.address.client.services.IPermissionService;
+import ch.paso.address.client.services.IPermissionServiceAsync;
 import ch.paso.address.shared.entities.ICodeType;
 import ch.paso.address.shared.entities.StufeCodeType;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -21,7 +25,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.ibm.icu.impl.ICUBinary.Authenticate;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -35,6 +38,7 @@ public class Ch_paso_address implements EntryPoint {
 
 	private static Navigation S_navigation;
 	private static RootPanel m_rootPanel;
+	private static HashMap<String, Integer> m_permissionCache;
 
 	public void onModuleLoad() {
 		ICodeServiceAsync svc = GWT.create(ICodeService.class);
@@ -46,8 +50,7 @@ public class Ch_paso_address implements EntryPoint {
 					}
 
 					public void onSuccess(List<ICodeType> result) {
-						// TODO get username / password
-						display();
+						loadPermissions();
 
 					}
 				});
@@ -61,7 +64,7 @@ public class Ch_paso_address implements EntryPoint {
 			public void onSuccess(String[] result) {
 				setUsername(result[0]);
 				setPassword(result[1]);
-				display();
+				loadPermissions();
 			}
 
 			@Override
@@ -72,7 +75,6 @@ public class Ch_paso_address implements EntryPoint {
 		});
 
 	}
-
 	private void display() {
 		RootPanel rootPanel = RootPanel.get("display");
 		m_rootPanel = rootPanel;
@@ -131,5 +133,40 @@ public class Ch_paso_address implements EntryPoint {
 			ErrorHandler.handleError(e);
 		}
 
+	}
+
+	private void loadPermissions() {
+		IPermissionServiceAsync svc = GWT.create(IPermissionService.class);
+		svc.loadPermissions(new AsyncCallback<List<Permission>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				ErrorHandler.handleError("error loading permissions", caught);
+			}
+
+			@Override
+			public void onSuccess(List<Permission> result) {
+				m_permissionCache = new HashMap<String, Integer>();
+				if (result != null) {
+					for (Permission p : result) {
+						m_permissionCache.put(p.getName(), p.getLevel());
+					}
+				}
+				display();
+			}
+		});
+	}
+
+	public static boolean checkPermission(Permission reqPerm) {
+		if (reqPerm == null) {
+			return true;
+		}
+		if (m_permissionCache.containsKey(reqPerm.getName())) {
+			Integer level = m_permissionCache.get(reqPerm.getName());
+			if (level >= reqPerm.getLevel()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

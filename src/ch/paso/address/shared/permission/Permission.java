@@ -7,6 +7,13 @@ public class Permission implements Comparable<Permission>, Serializable {
 	private String m_name;
 	private int m_level;
 
+	public Permission(String name, int level) {
+		setLevel(level);
+		setName(name);
+	}
+	public Permission() {
+	}
+
 	public void setLevel(int level) {
 		m_level = level;
 	}

@@ -13,6 +13,7 @@ import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractDateColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.PersonEntity;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.CloseEvent;
@@ -39,6 +40,10 @@ public class PersonTablePage extends AbstractTablePage<PersonEntity> {
 		form.startNew();
 	}
 
+	@Override
+	protected Permission getConfiguredNewButtonPermission() {
+		return new Permission("EditPerson", 100);
+	}
 	@Override
 	protected void reload() {
 		IPersonServiceAsync svc = GWT.create(IPersonService.class);
@@ -237,6 +242,10 @@ public class PersonTablePage extends AbstractTablePage<PersonEntity> {
 			}
 
 			@Override
+			protected Permission getConfiguredPermission() {
+				return new Permission("EditPerson", 100);
+			}
+			@Override
 			protected void execOnClick(int index, PersonEntity object,
 					String value) {
 				PersonForm form = new PersonForm();
@@ -252,32 +261,40 @@ public class PersonTablePage extends AbstractTablePage<PersonEntity> {
 
 		}
 
-	}
+		public class DeleteButtonColumn extends
+				AbstractButtonColumn<PersonEntity> {
 
-	public class DeleteButtonColumn extends AbstractButtonColumn<PersonEntity> {
+			@Override
+			protected Permission getConfiguredPermission() {
+				return new Permission("DeletePerson", 100);
+			}
 
-		@Override
-		protected void execOnClick(int index, PersonEntity object, String value) {
-			IPersonServiceAsync svc = GWT.create(IPersonService.class);
-			svc.deletePerson(object.getId(), new AsyncCallback<Void>() {
-				@Override
-				public void onFailure(Throwable caught) {
-					ErrorHandler.handleError("Error during deleting", caught);
-				}
+			@Override
+			protected void execOnClick(int index, PersonEntity object,
+					String value) {
+				IPersonServiceAsync svc = GWT.create(IPersonService.class);
+				svc.deletePerson(object.getId(), new AsyncCallback<Void>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						ErrorHandler.handleError("Error during deleting",
+								caught);
+					}
 
-				@Override
-				public void onSuccess(Void result) {
-					reload();
-				}
+					@Override
+					public void onSuccess(Void result) {
+						reload();
+					}
 
-			});
+				});
 
+			}
+
+			@Override
+			protected String getConfiguredLabel() {
+				return "Löschen";
+			}
 		}
 
-		@Override
-		protected String getConfiguredLabel() {
-			return "Löschen";
-		}
 	}
 
 	@Override

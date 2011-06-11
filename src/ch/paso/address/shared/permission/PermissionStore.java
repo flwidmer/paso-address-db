@@ -3,6 +3,7 @@ package ch.paso.address.shared.permission;
 import java.util.HashMap;
 
 public class PermissionStore {
+	//TODO use
 
 	private HashMap<String, Integer> m_permissionCache;
 

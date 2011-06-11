@@ -7,6 +7,7 @@ import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.CodeEditForm;
 import ch.paso.address.client.services.ICodeService;
 import ch.paso.address.client.services.ICodeServiceAsync;
+import ch.paso.address.client.tables.columns.AbstractButtonColumn;
 import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.ICodeType;
@@ -183,6 +184,6 @@ public abstract class AbstractCodeAdminPage extends Composite {
 			}
 
 		}
-
+		
 	}
 }

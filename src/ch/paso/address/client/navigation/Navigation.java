@@ -7,6 +7,7 @@ import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.tables.AdminPage;
 import ch.paso.address.client.tables.ImportPage;
 import ch.paso.address.client.tables.PersonTablePage;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -125,6 +126,11 @@ public class Navigation extends Composite {
 		protected Widget getConfiguredTarget() {
 			return new ImportPage();
 		}
+		
+		@Override
+		protected Permission getConfiguredPermission() {
+			return new Permission("Admin", 100);
+		}
 
 	}
 
@@ -142,6 +148,10 @@ public class Navigation extends Composite {
 		@Override
 		protected Widget getConfiguredTarget() {
 			return new AdminPage();
+		}
+		@Override
+		protected Permission getConfiguredPermission() {
+			return new Permission("Admin", 100);
 		}
 
 	}

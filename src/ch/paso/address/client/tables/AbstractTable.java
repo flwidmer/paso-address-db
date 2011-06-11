@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.paso.address.client.tables.columns.AbstractColumn;
-import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.user.cellview.client.CellTable;
 
@@ -17,9 +16,11 @@ public abstract class AbstractTable<T> extends CellTable<T> {
 	protected void onLoad() {
 		List<AbstractColumn<T, ?>> col = getConfiguredColumns();
 		for (AbstractColumn column : col) {
-			addColumn(column, column.getConfiguredTitle());
-			if (column.getConfiguredSortable()) {
+			if (column.grantedVisible()) {
+				addColumn(column, column.getConfiguredTitle());
+				if (column.getConfiguredSortable()) {
 
+				}
 			}
 		}
 	}

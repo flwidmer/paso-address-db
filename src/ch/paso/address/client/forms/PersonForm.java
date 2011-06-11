@@ -3,6 +3,7 @@ package ch.paso.address.client.forms;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.paso.address.client.Ch_paso_address;
 import ch.paso.address.client.errorhandling.ErrorHandler;
 import ch.paso.address.client.forms.PersonForm.AddressGroupBox.CellField;
 import ch.paso.address.client.forms.PersonForm.AddressGroupBox.EmailField;
@@ -29,6 +30,7 @@ import ch.paso.address.client.services.IPersonServiceAsync;
 import ch.paso.address.shared.entities.FunctionCodeType;
 import ch.paso.address.shared.entities.PersonEntity;
 import ch.paso.address.shared.entities.StufeCodeType;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
