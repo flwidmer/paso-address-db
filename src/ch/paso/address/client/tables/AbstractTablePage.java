@@ -14,6 +14,7 @@ public abstract class AbstractTablePage<T> extends Composite {
 	private CellTable<T> m_theTable;
 
 	public AbstractTablePage() {
+		execInit();
 		setTheTable(getConfiguredTable());
 		VerticalPanel hp = new VerticalPanel();
 		hp.add(getTheTable());
@@ -29,6 +30,11 @@ public abstract class AbstractTablePage<T> extends Composite {
 			hp.add(newButton);
 		}
 		initWidget(hp);
+	}
+
+	protected void execInit() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private boolean newButtonGrantedVisible() {

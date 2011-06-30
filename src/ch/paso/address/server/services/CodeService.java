@@ -42,6 +42,11 @@ public class CodeService extends RemoteServiceServlet implements ICodeService {
 	}
 
 	public ICodeType storeCode(ICodeType data) {
+		//verify data
+		if(data.getText().contains(";")){
+			String newText = data.getText().replace(";", "");
+			data.setText(newText);
+		}
 		EntityManager em = EMF.get().createEntityManager();
 		em.persist(data);
 		em.merge(data);

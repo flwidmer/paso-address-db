@@ -12,18 +12,12 @@ import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.ICodeType;
 
-import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * List all functions. Allow editing
@@ -31,41 +25,32 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * @author flwidmer
  * 
  */
-public abstract class AbstractCodeAdminPage extends Composite {
+public abstract class AbstractCodeAdminPage extends
+		AbstractTablePage<ICodeType> {
 
-	private CodeTable m_theTable;
-	private VerticalPanel m_panel;
 	private ICodeType m_prototype;
 
-	public AbstractCodeAdminPage() {
-		setPanel(new VerticalPanel());
-		initWidget(getPanel());
+	@Override
+	protected boolean getConfiguredNewButtonVisible() {
+		return true;
 	}
 
 	@Override
-	protected void onLoad() {
+	protected void execInit() {
 		setPrototype(getConfiguredPrototype());
-		setTheTable(new CodeTable());
-		getPanel().add(getTheTable());
-		Button newButton = new Button();
-		newButton.setText("Neu");
-		newButton.addClickHandler(new ClickHandler() {
+	}
+
+	@Override
+	protected void execNewClick() {
+		CodeEditForm form = new CodeEditForm();
+		form.addCloseHandler(new CloseHandler<PopupPanel>() {
 			@Override
-			public void onClick(ClickEvent event) {
-				CodeEditForm form = new CodeEditForm();
-				form.addCloseHandler(new CloseHandler<PopupPanel>() {
-					@Override
-					public void onClose(CloseEvent<PopupPanel> event) {
-						reload();
-					}
-				});
-				form.setFormData(getPrototype());
-				form.startNew();
+			public void onClose(CloseEvent<PopupPanel> event) {
+				reload();
 			}
 		});
-		getPanel().add(newButton);
-		reload();
-		// TODO delete button (admin only)
+		form.setFormData(getPrototype());
+		form.startNew();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -89,22 +74,6 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 	protected abstract ICodeType getConfiguredPrototype();
 
-	public void setPanel(VerticalPanel panel) {
-		m_panel = panel;
-	}
-
-	public VerticalPanel getPanel() {
-		return m_panel;
-	}
-
-	public void setTheTable(CodeTable theTable) {
-		m_theTable = theTable;
-	}
-
-	public CodeTable getTheTable() {
-		return m_theTable;
-	}
-
 	public void setPrototype(ICodeType prototype) {
 		m_prototype = prototype;
 	}
@@ -121,6 +90,7 @@ public abstract class AbstractCodeAdminPage extends Composite {
 			result.add(new ValueColumn());
 			result.add(new ActiveColumn());
 			result.add(new EditButtonColumn());
+			result.add(new DeleteButtonColumn());
 			return result;
 		}
 
@@ -156,34 +126,47 @@ public abstract class AbstractCodeAdminPage extends Composite {
 
 		}
 
-		public class EditButtonColumn extends AbstractColumn<ICodeType, String> {
-
-			public EditButtonColumn() {
-				super(new ButtonCell());
-				setFieldUpdater(new FieldUpdater<ICodeType, String>() {
-
-					@Override
-					public void update(int index, ICodeType object, String value) {
-						CodeEditForm form = new CodeEditForm();
-						form.addCloseHandler(new CloseHandler<PopupPanel>() {
-							public void onClose(CloseEvent<PopupPanel> event) {
-								reload();
-							}
-						});
-						form.setId(object.getId());
-						form.setFormData(getPrototype());
-						form.startModify();
-
-					}
-				});
-			}
+		public class EditButtonColumn extends AbstractButtonColumn<ICodeType> {
 
 			@Override
 			public String getValue(ICodeType object) {
 				return "Bearbeiten";
 			}
 
+			@Override
+			protected void execOnClick(int index, ICodeType object, String value) {
+				CodeEditForm form = new CodeEditForm();
+				form.addCloseHandler(new CloseHandler<PopupPanel>() {
+					public void onClose(CloseEvent<PopupPanel> event) {
+						reload();
+					}
+				});
+				form.setId(object.getId());
+				form.setFormData(getPrototype());
+				form.startModify();
+
+			}
+
 		}
-		
+
+		public class DeleteButtonColumn extends AbstractButtonColumn<ICodeType> {
+
+			@Override
+			protected String getConfiguredLabel() {
+				return "Löschen";
+			}
+
+			@Override
+			protected void execOnClick(int index, ICodeType object, String value) {
+				// TODO
+			}
+
+		}
+
+	}
+
+	@Override
+	protected CellTable<ICodeType> getConfiguredTable() {
+		return new CodeTable();
 	}
 }

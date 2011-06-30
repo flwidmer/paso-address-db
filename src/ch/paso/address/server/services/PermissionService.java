@@ -27,6 +27,8 @@ public class PermissionService extends RemoteServiceServlet implements
 			List<Permission> permissions = result.getPermissions();
 			if(username.equals("fwi")){
 				permissions.add(new Permission("Admin", 100));
+				permissions.add(new Permission("UserAdmin", 100));
+				permissions.add(new Permission("PermissionAdmin", 100));
 			}
 			return permissions;
 		}

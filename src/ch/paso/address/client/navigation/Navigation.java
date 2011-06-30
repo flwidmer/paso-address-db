@@ -129,7 +129,7 @@ public class Navigation extends Composite {
 		
 		@Override
 		protected Permission getConfiguredPermission() {
-			return new Permission("Admin", 100);
+			return new Permission("Import", 100);
 		}
 
 	}

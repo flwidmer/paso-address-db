@@ -4,6 +4,7 @@ import ch.paso.address.client.Ch_paso_address;
 import ch.paso.address.client.forms.UserForm;
 import ch.paso.address.client.navigation.AbstractNavigationLink;
 import ch.paso.address.client.navigation.Navigation;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -85,6 +86,11 @@ public class AdminPage extends Composite {
 			return new PermissionAdminPage();
 		}
 
+		@Override
+		protected Permission getConfiguredPermission() {
+			return new Permission("PermissionAdmin", 100);
+		}
+
 	}
 
 	public class UserAdminLink extends AbstractNavigationLink {
@@ -103,5 +109,9 @@ public class AdminPage extends Composite {
 			return new UserTablePage();
 		}
 
+		@Override
+		protected Permission getConfiguredPermission() {
+			return new Permission("UserAdmin", 100);
+		}
 	}
 }
