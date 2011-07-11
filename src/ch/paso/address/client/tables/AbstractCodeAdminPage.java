@@ -11,11 +11,13 @@ import ch.paso.address.client.tables.columns.AbstractButtonColumn;
 import ch.paso.address.client.tables.columns.AbstractColumn;
 import ch.paso.address.client.tables.columns.AbstractStringColumn;
 import ch.paso.address.shared.entities.ICodeType;
+import ch.paso.address.shared.permission.Permission;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.PopupPanel;
 
@@ -28,16 +30,15 @@ import com.google.gwt.user.client.ui.PopupPanel;
 public abstract class AbstractCodeAdminPage extends
 		AbstractTablePage<ICodeType> {
 
+	public AbstractCodeAdminPage() {
+		setPrototype(getConfiguredPrototype());
+	}
+
 	private ICodeType m_prototype;
 
 	@Override
 	protected boolean getConfiguredNewButtonVisible() {
 		return true;
-	}
-
-	@Override
-	protected void execInit() {
-		setPrototype(getConfiguredPrototype());
 	}
 
 	@Override
@@ -152,13 +153,35 @@ public abstract class AbstractCodeAdminPage extends
 		public class DeleteButtonColumn extends AbstractButtonColumn<ICodeType> {
 
 			@Override
+			protected Permission getConfiguredPermission() {
+				return new Permission("DeleteCode", 100);
+			}
+
+			@Override
 			protected String getConfiguredLabel() {
 				return "Löschen";
 			}
 
 			@Override
 			protected void execOnClick(int index, ICodeType object, String value) {
-				// TODO
+				if (Window.confirm("Löschen?")) {
+					ICodeServiceAsync svc = GWT.create(ICodeService.class);
+					svc.deleteCode(getPrototype(), object.getId(),
+							new AsyncCallback<Void>() {
+
+								@Override
+								public void onFailure(Throwable caught) {
+									ErrorHandler.handleError(
+											"error deleting code", caught);
+								}
+
+								@Override
+								public void onSuccess(Void result) {
+									reload();
+								}
+
+							});
+				}
 			}
 
 		}

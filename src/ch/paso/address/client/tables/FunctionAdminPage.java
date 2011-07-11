@@ -1,9 +1,7 @@
 package ch.paso.address.client.tables;
 
-import com.google.gwt.user.cellview.client.CellTable;
-
-import ch.paso.address.shared.entities.ICodeType;
 import ch.paso.address.shared.entities.FunctionCodeType;
+import ch.paso.address.shared.entities.ICodeType;
 
 public class FunctionAdminPage extends AbstractCodeAdminPage{
 

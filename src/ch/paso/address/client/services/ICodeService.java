@@ -18,4 +18,6 @@ public interface ICodeService extends RemoteService {
 
 	List<ICodeType> loadActiveCodes(ICodeType type);
 
+	void deleteCode(ICodeType prototype, Long id);
+
 }

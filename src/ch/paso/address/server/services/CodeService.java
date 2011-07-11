@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import ch.paso.address.client.services.ICodeService;
@@ -28,11 +27,12 @@ public class CodeService extends RemoteServiceServlet implements ICodeService {
 		em.close();
 		return result;
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<ICodeType> loadActiveCodes(ICodeType type) {
 		EntityManager em = EMF.get().createEntityManager();
-		Query query = em.createQuery("SELECT c FROM " + type.getClass().getName() + " c WHERE c.m_active=:active");
+		Query query = em.createQuery("SELECT c FROM "
+				+ type.getClass().getName() + " c WHERE c.m_active=:active");
 		query.setParameter("active", true);
 		List resultList = query.getResultList();
 		List<ICodeType> result = new ArrayList<ICodeType>();
@@ -42,8 +42,8 @@ public class CodeService extends RemoteServiceServlet implements ICodeService {
 	}
 
 	public ICodeType storeCode(ICodeType data) {
-		//verify data
-		if(data.getText().contains(";")){
+		// verify data
+		if (data.getText().contains(";")) {
 			String newText = data.getText().replace(";", "");
 			data.setText(newText);
 		}
@@ -65,6 +65,24 @@ public class CodeService extends RemoteServiceServlet implements ICodeService {
 				return result;
 			}
 			return null;
+		} finally {
+			em.close();
+		}
+	}
+
+	public void deleteCode(ICodeType prototype, Long id) {
+		if (id == null || prototype == null) {
+			return;
+		}
+		EntityManager em = EMF.get().createEntityManager();
+		try {
+			em.getTransaction().begin();
+			ICodeType toDelete = em.find(prototype.getClass(), id);
+			if (toDelete == null) {
+				return;
+			}
+			em.remove(toDelete);
+			em.getTransaction().commit();
 		} finally {
 			em.close();
 		}

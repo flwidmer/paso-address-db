@@ -19,4 +19,6 @@ public interface ICodeServiceAsync {
 
 	public void loadCodes(ICodeType type, AsyncCallback<List> callback);
 
+	void deleteCode(ICodeType prototype, Long id, AsyncCallback<Void> callback);
+
 }

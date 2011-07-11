@@ -39,6 +39,14 @@
 		<servlet-name>personimport</servlet-name>
 		<url-pattern>/ch_paso_address/auth/personimport</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>personexport</servlet-name>
+		<servlet-class>ch.paso.address.server.fileupload.PersonExportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>personexport</servlet-name>
+		<url-pattern>/ch_paso_address/auth/personexport</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>authentication</servlet-name>
 		<url-pattern>/authentication</url-pattern>
