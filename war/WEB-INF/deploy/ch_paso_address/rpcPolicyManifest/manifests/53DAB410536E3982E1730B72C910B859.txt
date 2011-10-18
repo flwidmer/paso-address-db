@@ -1,0 +1,2 @@
+serviceClass: ch.paso.address.client.services.ICodeService
+path: 62A346ED11E7A5FF7E2D3E610C6C2075.gwt.rpc

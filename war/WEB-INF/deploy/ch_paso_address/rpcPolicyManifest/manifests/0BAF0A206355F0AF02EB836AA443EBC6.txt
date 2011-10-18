@@ -1,0 +1,2 @@
+serviceClass: ch.paso.address.client.services.IPersonService
+path: 42AE5DDA0051E8163182874828B7825F.gwt.rpc

@@ -1,0 +1,5 @@
+# Module ch_paso_address
+# RPC service class, partial path of RPC policy file
+ch.paso.address.client.services.IPersonService, 42AE5DDA0051E8163182874828B7825F.gwt.rpc
+ch.paso.address.client.services.IPermissionService, CAE4162151DE70A01F024D518ABC03DA.gwt.rpc
+ch.paso.address.client.services.ICodeService, 62A346ED11E7A5FF7E2D3E610C6C2075.gwt.rpc

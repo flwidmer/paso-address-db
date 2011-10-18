@@ -1,0 +1,2 @@
+serviceClass: ch.paso.address.client.services.IPermissionService
+path: CAE4162151DE70A01F024D518ABC03DA.gwt.rpc

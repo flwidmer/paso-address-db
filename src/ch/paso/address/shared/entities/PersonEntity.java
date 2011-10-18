@@ -25,7 +25,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getFirstName() {
-		return m_firstName;
+		return m_firstName == null ? "" : m_firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -33,7 +33,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getLastName() {
-		return m_lastName;
+		return m_lastName == null ? "" : m_lastName;
 	}
 
 	public void setLastName(String lastName) {
@@ -41,7 +41,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getVulgo() {
-		return m_vulgo;
+		return m_vulgo == null ? "" : m_vulgo;
 	}
 
 	public void setVulgo(String vulgo) {
@@ -49,7 +49,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public Date getBirthDate() {
-		return m_birthDate;
+		return m_birthDate == null ? new Date(0) : m_birthDate;
 	}
 
 	public void setBirthDate(Date birthDate) {
@@ -57,7 +57,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public Date getEntry() {
-		return m_entry;
+		return m_entry == null ? new Date(0) : m_entry;
 	}
 
 	public void setEntry(Date entry) {
@@ -65,7 +65,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public Date getLeft() {
-		return m_left;
+		return m_left == null ? new Date(0) : m_left;
 	}
 
 	public void setLeft(Date left) {
@@ -85,7 +85,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getStreet() {
-		return m_street;
+		return m_street == null ? "" : m_street;
 	}
 
 	public void setPlz(String plz) {
@@ -93,7 +93,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getPlz() {
-		return m_plz;
+		return m_plz == null ? "" : m_plz;
 	}
 
 	public void setTown(String town) {
@@ -101,7 +101,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getTown() {
-		return m_town;
+		return m_town == null ? "" : m_town;
 	}
 
 	public void setPhone(String phone) {
@@ -109,7 +109,7 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getPhone() {
-		return m_phone;
+		return m_phone == null ? "" : m_phone;
 	}
 
 	public void setCell(String cell) {
@@ -117,11 +117,11 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getCell() {
-		return m_cell;
+		return m_cell == null ? "" : m_cell;
 	}
 
 	public void setEmail(String email) {
-		m_email = email;
+		m_email = email == null ? "" : m_email;
 	}
 
 	public String getEmail() {
@@ -136,20 +136,20 @@ public class PersonEntity implements Serializable {
 	// return m_function;
 	// }
 
-//	public void setFunction(FunctionCodeType function) {
-//		m_function = function;
-//	}
+	// public void setFunction(FunctionCodeType function) {
+	// m_function = function;
+	// }
 
-//	public FunctionCodeType getFunction() {
-//		return m_function;
-//	}
+	// public FunctionCodeType getFunction() {
+	// return m_function;
+	// }
 
 	public void setStufe(String stufe) {
 		m_stufe = stufe;
 	}
 
 	public String getStufe() {
-		return m_stufe;
+		return m_stufe == null ? "" : m_stufe;
 	}
 
 	public void setFunction(String function) {
@@ -157,8 +157,9 @@ public class PersonEntity implements Serializable {
 	}
 
 	public String getFunction() {
-		return m_function;
+		return m_function == null ? "" : m_function;
 	}
+
 	@Basic
 	private String m_firstName;
 	@Basic
@@ -190,4 +191,3 @@ public class PersonEntity implements Serializable {
 	@Basic
 	private String m_function;
 }
-
